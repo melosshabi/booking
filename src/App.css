@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap');
+:root{
+  --blue:rgb(0, 53, 128);
+  --darkBlue:rgb(15, 63, 101);
+  --lightBlue:rgb(0, 89, 225);
+  --dimWhite:rgba(255, 255, 255, .2);
+  --dimBlack:rgba(0, 0, 0, .2);
+}
+*{
+  padding:0;
+  margin:0;
+}
+.App{
+  /* height: 100dvh; */
+  font-family: 'Figtree', sans-serif;
+}
+nav{
+  height: 13dvh;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--blue);
+}
+.h1{
+  color:white;
+  text-decoration: none;
+  font-size: 2em;
+  margin-left: 20px;
+}
+.sign-in-wrapper{
+  height: 100%;
+  width: 25%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#list-prop{
+  text-decoration: none;
+  color:white;
+  font-size: 1em;
+  cursor: pointer;
+  padding:10px 15px;
+  transition: all 150ms;
+}
+#list-prop:hover{
+  background-color: var(--dimWhite);
+}
+.auth-links{
+  text-decoration: none;
+  color:var(--blue);
+  background-color:white;
+  border:1px solid var(--lightBlue);
+  padding:10px 15px;
+  transition: all 150ms;
+}
+.auth-links:hover{
+  background-color:rgba(255, 255, 255, .8);
+}
