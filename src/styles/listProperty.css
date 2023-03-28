@@ -1,0 +1,43 @@
+.list-property-wrapper{
+    height:87dvh;
+    font-family: 'Figtree', sans-serif;
+}
+.list-property-wrapper h2{
+    margin-left: 10%;
+    padding-top: 5%;
+    margin-bottom: 5%;
+}
+.property-types-wrapper{
+    width: 80vw;
+    height: 50%;
+    margin-left:10%;
+    background-color: white;
+    padding:20px 30px;
+    border:1px solid gray;
+    display: flex;
+    justify-content: space-between;
+}
+.property-types-wrapper div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border-right: 1px solid gray;
+    padding-right:20px;
+}
+.property-types-wrapper div:last-child{
+    border:none;
+}
+.list-prop-btn{
+    padding:10px 20px;
+    background-color: var(--lightBlue);
+    border:none;
+    border-radius: 3px;
+    color:white;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 200ms;
+}
+.list-prop-btn:hover{
+    background-color: var(--blue);
+}
