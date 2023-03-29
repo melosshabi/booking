@@ -4,7 +4,6 @@ import Cookies from 'universal-cookie'
 import apartments from '../images/apartments.jpeg'
 import hotel from '../images/hotel.jpeg'
 import resorts from '../images/resorts.jpeg'
-import villas from '../images/villas.jpeg'
 import '../styles/listProperty.css'
 
 const cookies = new Cookies()
@@ -36,12 +35,6 @@ export default function ListProperty() {
                 <img src={resorts}/>
                 <h3>Resort</h3>
                 <Link className='list-prop-btn' to="/listPropertyForm" state={{propertyType:"resort"}}>List your property</Link>
-            </div>
-
-            <div>
-                <img src={villas}/>
-                <h3>Villa</h3>
-                <Link className='list-prop-btn' state={{propertyType:"villa"}}>List your property</Link>
             </div>
         </div>
     </div>

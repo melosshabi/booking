@@ -1,0 +1,59 @@
+.property-details-wrapper{
+    height: 70dvh;
+    width: 60dvw;
+    margin:auto;
+    margin-top: 10dvh;
+    padding:10px;
+    border:1px solid gray;
+    font-family: 'Figtree', sans-serif;
+    position: relative;
+}
+.landlord{
+    position: absolute;
+    right:20px;
+    top:10px;
+}
+.property-details-images-wrapper{
+    height: 85%;
+    width:100%;
+    margin-top: 20px;
+    position: relative;
+}
+.main-img{
+    width: 500px;
+}
+.secondary-img{
+    position: absolute;
+    top:0;
+    right:0;
+    width: 410px;
+}
+.property-details-btns-wrapper{
+    width: 400px;
+    height: 35%;
+    margin:auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    align-self: flex-end;
+}
+.reserve-btn, .save-btn{
+    background-color: var(--lightBlue);
+    color:white;
+    border:none;
+    border-radius: 4px;
+    padding:10px 40px;
+    cursor: pointer;
+    transition: all 250ms;
+}
+.save-btn{
+    background:none;
+    color:var(--lightBlue);
+    border:1px solid var(--lightBlue);
+}
+.reserve-btn:hover{
+    background-color: var(--blue);
+}
+.save-btn:hover{
+    background-color: var(--dimBlack);
+}

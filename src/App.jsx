@@ -1,9 +1,11 @@
-import { HashRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom'
+import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import SignUp from './Components/SignUp'
 import SignIn from './Components/SignIn'
 import Home from './Components/Home'
 import ListProperty from './Components/ListProperty'
 import ListPropertyForm from './Components/ListPropertyForm'
+import PropertyBrowser from './Components/PropertyBrowser'
+import PropertyDetails from './Components/propertyDetails'
 import Cookies from 'universal-cookie'
 import whiteCaret from './images/white-Caret.svg'
 import { signOut } from 'firebase/auth'
@@ -56,7 +58,9 @@ function App() {
         <Route path="/signUp" exact element={<SignUp/>}/>
         <Route path="/signIn" exact element={<SignIn/>}/>
         <Route path="/listProperty" exact element={<ListProperty/>}/>
-        <Route path="listPropertyForm" exact element={<ListPropertyForm/>}/>
+        <Route path="/listPropertyForm" exact element={<ListPropertyForm/>}/>
+        <Route path="/propertyBrowser" exact element={<PropertyBrowser/>}/>
+        <Route path="/propertyDetails" exact element={<PropertyDetails/>}/>
       </Routes> 
     </Router>
   )

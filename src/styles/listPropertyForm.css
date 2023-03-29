@@ -3,9 +3,9 @@
     text-align: center;
 }
 .list-property-form-wrapper h2{
-    margin-top: 20px;
+    margin: 20px 0;
 }
-.list-property-form{
+.list-property-form, .list-property-form-hotel, .list-property-form-resort{
     height: 60dvh;
     margin-top: 10dvh;
     display: flex;
@@ -71,11 +71,6 @@
     font-size: 2em;
 }
 /* Hotel Form */
-.list-property-form-hotel{
+.list-property-form-hotel, .list-property-form-resort{
     height: 100dvh;
-    margin-top: 10dvh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
 }

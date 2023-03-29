@@ -1,0 +1,65 @@
+.property-browser-wrapper{
+    font-family: 'Figtree', sans-serif;
+}
+.property-browser-wrapper h2{
+    font-size: 2em;
+    margin:5% 10%;
+}
+.properties-wrapper{
+    width: 80dvw;
+    height: 500px;
+    margin-left:10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.property-div{
+    width: 70%;
+    height: 200px;
+    margin-top: 50px;
+    padding-bottom: 10px;
+    border-bottom:1px solid gray;
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+}
+.property-img-wrapper{
+    height: 100%;
+    width: 50%;
+}
+.property-img{
+    height: 100%;
+    width: 100%;    
+}
+.property-details{
+    width: 70%;
+    height: 50%;
+}
+.property-name{
+    font-size: 1.5em;
+    text-decoration: none;
+    color:black;
+}
+.property-name:hover{
+    text-decoration: underline;
+}
+.property-name, .property-address{
+    margin-left: 30px;
+}
+.price-div{
+    width: 100px;
+    height: 50%;
+    position: absolute;
+    right:0;
+    bottom:0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.price-spans{
+    font-size: .8em;
+    font-weight: 300;
+    color:rgba(128, 128, 128, 1);
+    margin:5px 0;
+}

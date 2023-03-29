@@ -1,15 +1,22 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 import {auth} from '../firebase-config'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import Cookies from 'universal-cookie'
 import '../styles/signUp.css'
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
+import {db} from '../firebase-config'
 
 const cookies = new Cookies()
 
 export default function SignUp() {
 
     const navigate = useNavigate();
+
+    useEffect(()=>{
+      if(cookies.get("auth-token")) navigate('/')
+    }, [])
+
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -26,8 +33,18 @@ export default function SignUp() {
           cookies.set('id', res.user.uid)
         })
         await updateProfile(auth.currentUser, {displayName:name})
-        .then(()=> navigate('/'))
-        
+        .then(()=> window.location.reload)
+
+        const usersRef = collection(db, 'users')
+        await addDoc(usersRef, {
+          name:name,
+          email:email,
+          id:auth.currentUser.uid,
+          accountCreatedAt:serverTimestamp(),
+          submittedReservations:{},
+          savedProperties:{} 
+        }).then(() => window.location.reload())
+
         }catch(err){
           switch(err.code){
             case 'auth/email-already-in-use':

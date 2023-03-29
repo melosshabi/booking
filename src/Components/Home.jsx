@@ -8,7 +8,6 @@ import blackPlus from '../images/black-plus.png'
 import bluePlus from '../images/blue-plus.png'
 import hotel from '../images/hotel.jpeg'
 import resort from '../images/resorts.jpeg'
-import villas from '../images/villas.jpeg'
 import apartments from '../images/apartments.jpeg'
 import '../styles/home.css'
 
@@ -112,20 +111,16 @@ export default function Home() {
             <h3>Browse by property type</h3>
             <div className="property-types">
                 <div className="hotels">
-                    <Link><img src={hotel}/></Link>
+                    <Link to="/propertyBrowser" state={{propertyType:"hotels"}}><img src={hotel}/></Link>
                     <Link>Hotels</Link>
                 </div>
                 <div className="apartments">
-                    <Link><img src={apartments} /></Link>
+                    <Link to="/propertyBrowser" state={{propertyType:"apartments"}}><img src={apartments} /></Link>
                     <Link>Apartments</Link>
                 </div>
                 <div className="resorts">
-                    <Link><img src={resort} /></Link>
+                    <Link to="/propertyBrowser" state={{propertyType:"resorts"}}><img src={resort} /></Link>
                     <Link>Resorts</Link>
-                </div>
-                <div className="villas">
-                    <Link><img src={villas} /></Link>
-                    <Link>Villas</Link>
                 </div>
             </div>
         </div>

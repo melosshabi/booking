@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase-config';
@@ -7,8 +7,12 @@ import Cookies from 'universal-cookie'
 const cookies = new Cookies()
 
 export default function SignIn() {
-  
+    
     const navigate = useNavigate();
+    useEffect(()=> {
+      if(cookies.get('auth-token')) navigate('/')
+    }, [])
+    
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
@@ -22,7 +26,7 @@ export default function SignIn() {
             cookies.set('email', res.user.email)
             cookies.set('name', res.user.displayName)
             cookies.set('id', res.user.uid)
-            navigate('/')
+            window.location.reload()
           })
         }catch(err){
           console.log(err.code)
