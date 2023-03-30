@@ -1,8 +1,9 @@
 .property-details-wrapper{
-    height: 70dvh;
+    height: 90dvh;
     width: 60dvw;
     margin:auto;
     margin-top: 10dvh;
+    margin-bottom: 10dvh;
     padding:10px;
     border:1px solid gray;
     font-family: 'Figtree', sans-serif;
@@ -16,28 +17,53 @@
 .property-details-images-wrapper{
     height: 85%;
     width:100%;
-    margin-top: 20px;
-    position: relative;
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
 }
-.main-img{
-    width: 500px;
-}
-.secondary-img{
+.prop-img{
+    width:70%;
+    max-height: 60%;
     position: absolute;
-    top:0;
-    right:0;
-    width: 410px;
+    opacity: 0;
+    transition: all 400ms;
+}
+.active-img{
+    opacity: 1;
+}
+.prev-arrow, .next-arrow{
+    font-size: 5em;
+    background: none;
+    border:none;
+    cursor: pointer;
+    position: absolute;
+}
+.prev-arrow{
+    left:10px;
+    top:50%;
+    transform: translateY(-80%);
+}
+.next-arrow{
+    right:10px;
+    top:50%;
+    transform:translateY(-80%)
 }
 .property-details-btns-wrapper{
     width: 400px;
-    height: 35%;
+    height: 10%;
     margin:auto;
+    margin-top: 70px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    align-self: flex-end;
+    position: absolute;
+    bottom: 10px;
 }
-.reserve-btn, .save-btn{
+.reserve-btn, .save-btn, .unsave-btn{
+    text-decoration: none;
+    font-size: 1em;
     background-color: var(--lightBlue);
     color:white;
     border:none;
@@ -51,7 +77,10 @@
     color:var(--lightBlue);
     border:1px solid var(--lightBlue);
 }
-.reserve-btn:hover{
+.unsave-btn{
+    display: none;
+}
+.reserve-btn:hover, .unsave-btn:hover{
     background-color: var(--blue);
 }
 .save-btn:hover{

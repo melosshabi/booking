@@ -1,0 +1,66 @@
+body{
+    /* overflow-x: hidden; */
+    font-family: 'Figtree', sans-serif;
+}
+.reserve-form-wrapper{
+    width: 99dvw;
+    /* height: 90dvh; */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.selected-property{
+    width: 50dvw;
+    height: 25dvh;
+    display: flex;
+    margin-top: 50px;
+    padding:20px 20px;
+    border:1px solid gray;
+    border-radius: 4px;
+}
+.selected-property-image-wrapper{
+    margin-right: 40px;
+}
+.selected-property-img{
+    width: 300px;
+}
+.selected-property-reservation-form{
+    height: 100vh;
+    width:50%;
+    text-align: center;
+    margin: 50px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.reservation-form h2{
+    margin-bottom: 20px;
+}
+.special-requests{
+    min-height: 100px;
+    min-width: 100%;
+    max-height: 300px;
+    max-width: 100%;
+}
+.arrival-time{
+    height: 20dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+.finish-reservation-btn{
+    font-size: 1.1em;
+    padding:10px 25px;
+    background: none;
+    border:none;
+    border-radius: 5px;
+    background-color: var(--lightBlue);
+    color:white;
+    cursor: pointer;
+    transition: all 250ms;
+}
+.finish-reservation-btn:hover{
+    background-color: var(--blue);
+}

@@ -1,4 +1,5 @@
 import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom'
+// Komponentet
 import SignUp from './Components/SignUp'
 import SignIn from './Components/SignIn'
 import Home from './Components/Home'
@@ -6,6 +7,9 @@ import ListProperty from './Components/ListProperty'
 import ListPropertyForm from './Components/ListPropertyForm'
 import PropertyBrowser from './Components/PropertyBrowser'
 import PropertyDetails from './Components/propertyDetails'
+import ReserveForm from './Components/ReserveForm'
+import UserProfile from './Components/UserProfile'
+// 
 import Cookies from 'universal-cookie'
 import whiteCaret from './images/white-Caret.svg'
 import { signOut } from 'firebase/auth'
@@ -46,6 +50,7 @@ function App() {
               {cookies.get('auth-token') && <div className='more-options-btn' onClick={toggleMoreOptions}>{cookies.get("name")}<img src={whiteCaret} alt="Caret"/>
               <div className="more-options">
                   <ul>
+                    <li><Link to="/userProfile">My Profile</Link></li>
                     <li><button className="sign-out-btn" onClick={logOut}>Sign Out</button></li>
                   </ul>
                 </div>
@@ -61,6 +66,8 @@ function App() {
         <Route path="/listPropertyForm" exact element={<ListPropertyForm/>}/>
         <Route path="/propertyBrowser" exact element={<PropertyBrowser/>}/>
         <Route path="/propertyDetails" exact element={<PropertyDetails/>}/>
+        <Route path="/reserveForm" exact element={<ReserveForm/>}/>
+        <Route path="/userProfile" exact element={<UserProfile/>}/>
       </Routes> 
     </Router>
   )
