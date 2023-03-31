@@ -8,6 +8,7 @@ export default function PropertyDetails() {
   
   const location = useLocation()
   const property = location.state.property
+  console.log(property)
   const pictures = useRef([])
   const picturesObj = property.propertyDetails.pictures
   const userObj = useRef()
@@ -29,7 +30,7 @@ export default function PropertyDetails() {
 
     for(let i = 0; i < usersSavedPropertiesLength; i++){
     
-      if(userObj.current.savedProperties[`property${i}`] === property.docId){
+      if(userObj.current.savedProperties[`property${i}`].propertyDocId === property.docId){
         const saveBtn = document.querySelector('.save-btn')
         const unsaveBtn = document.querySelector('.unsave-btn')
         saveBtn.style.display = 'none';
@@ -67,8 +68,8 @@ export default function PropertyDetails() {
   }
   
   //Funksioni per me rujt pronen   
-  async function saveProperty(propertyId){
-  
+  async function saveProperty(propertyId, propertyType){
+    console.log(propertyType)
     const usersCollection = collection(db, 'users')
     const userQuery = query(usersCollection, where("id", "==", `${auth.currentUser.uid}`))
 
@@ -77,7 +78,10 @@ export default function PropertyDetails() {
     userSnapshot.forEach(doc => userDocument = ({...doc.data(), userDocId:doc.id}))
     
     const savedPropertiesLength = Object.keys(userDocument.savedProperties).length
-    userDocument.savedProperties[`property${savedPropertiesLength}`] = propertyId
+    userDocument.savedProperties[`property${savedPropertiesLength}`] = {
+      propertyDocId: propertyId,
+      propertyType:propertyType.toLowerCase()
+    }
     
     const userDocRef = doc(db, 'users', userDocument.userDocId)
     delete userDocument.userDocId
@@ -99,7 +103,7 @@ export default function PropertyDetails() {
     const savedPropertiesLength = Object.keys(userDocument.savedProperties).length
     
     for(let i = 0; i < savedPropertiesLength; i++){
-        if(userDocument.savedProperties[`property${i}`] === propertyId){
+        if(userDocument.savedProperties[`property${i}`].propertyDocId === propertyId){
           delete userDocument.savedProperties[`property${i}`]
         }
     }
@@ -133,7 +137,7 @@ export default function PropertyDetails() {
         
             <div className="property-details-btns-wrapper">
                 <Link className="reserve-btn" to="/reserveForm" state={{...property}}>Reserve Now</Link>
-                <button className="save-btn" onClick={() => saveProperty(property.docId)}>Save the property</button>
+                <button className="save-btn" onClick={() => saveProperty(property.docId, property.propertyDetails.propertyType)}>Save property</button>
                 <button className="unsave-btn" onClick={() => unSaveProperty(property.docId)}>Unsave Property</button>
             </div>
         </div>

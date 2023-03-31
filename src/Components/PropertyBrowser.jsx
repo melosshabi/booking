@@ -46,8 +46,8 @@ export default function PropertyBrowser() {
 
                     <div className="price-div">
                         <span className='price-spans'>From</span>
-                        <p>${property.propertyDetails.propertyType === "Hotel" | property.propertyDetails.propertyType === "Apartment" ? property.propertyDetails.pricePerNight : property.propertyDetails.pricePerMonth}</p>
-                        <span className='price-spans'>Per {property.propertyDetails.propertyType === "Hotel" | property.propertyDetails.propertyType === "Apartment" ? "Night" : "Month"}</span>
+                        <p>${property.propertyDetails.propertyType === "hotel" | property.propertyDetails.propertyType === "apartment" ? property.propertyDetails.pricePerNight : property.propertyDetails.pricePerMonth}</p>
+                        <span className='price-spans'>Per {property.propertyDetails.propertyType === "hotel" | property.propertyDetails.propertyType === "apartment" ? "Night" : "Month"}</span>
                     </div>
 
                 </div>

@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import {collection, addDoc} from 'firebase/firestore'
+import {doc, collection, addDoc, getDocs, query, where, updateDoc} from 'firebase/firestore'
 import {db, auth} from '../firebase-config'
 import '../styles/reserveForm.css'
 
@@ -31,7 +31,26 @@ export default function ReserveForm() {
             arrivalDate:arrivalDate,
             arrivalTime:arrivalTime,
             reservedProperty:{...property}
-            }).then(() => {alert("Your reservation was placed successfully. Thank you"); navigate('/')})
+            })
+        
+        const userCollection = collection(db, 'users')
+        const userQuery = query(userCollection, where('id', '==', auth.currentUser.uid))
+        const querySnapshot = await getDocs(userQuery)
+        let userDocument = {}
+        querySnapshot.forEach(doc => userDocument = ({...doc.data(), userDocId:doc.id}) )
+        const submittedReservationsLength = Object.keys(userDocument.submittedReservations).length
+        userDocument.submittedReservations[`reservation${submittedReservationsLength}`] = {
+            propertyDocId: property.docId,
+            propertyType: property.propertyDetails.propertyType.toLowerCase()
+        }
+        
+        const userDocRef = doc(db, 'users', userDocument.userDocId)
+        delete userDocument.userDocId
+        await updateDoc(userDocRef, userDocument)
+        .then(() => {
+            alert("Your reservation was submitted successfully. Thank you")
+            navigate('/')
+        })
     }
   return (
     <div className='reserve-form-wrapper'>
