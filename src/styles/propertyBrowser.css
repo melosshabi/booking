@@ -9,6 +9,7 @@
     width: 80dvw;
     height: 500px;
     margin-left:10%;
+    margin-bottom: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;

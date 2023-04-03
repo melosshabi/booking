@@ -1,0 +1,39 @@
+.query-results-wrapper{
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+}
+.query-results-wrapper h2{
+    font-size: 2em;
+    margin:20px 0;
+    margin-bottom: 80px;
+}
+.query-properties-wrapper{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.query-property{
+    min-width: 50%;
+    max-width: 50%;
+    display: flex;
+    padding:10px 10px;
+    border:1px solid gray;
+}
+.query-property-img-wrapper img{
+    width: 300px;
+}
+.query-property-details{
+    display: flex;
+    flex-direction: column;
+}
+.property-link{
+    font-size: 1.5em;
+    color:black;
+    text-decoration: none;
+    margin-left: 25px;
+}
+.property-link:hover{
+    text-decoration: underline;
+}

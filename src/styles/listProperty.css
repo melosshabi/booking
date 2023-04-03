@@ -15,7 +15,7 @@
     padding:20px 30px;
     border:1px solid gray;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .property-types-wrapper div{
     display: flex;
@@ -23,10 +23,11 @@
     align-items: center;
     justify-content: space-around;
     border-right: 1px solid gray;
-    padding-right:20px;
+    padding-right:80px;
 }
 .property-types-wrapper div:last-child{
     border:none;
+    padding-right:0;
 }
 .list-prop-btn{
     padding:10px 20px;

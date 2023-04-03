@@ -5,6 +5,7 @@ import {uploadBytes, ref, getDownloadURL} from 'firebase/storage'
 import {db, storage} from '../firebase-config'
 import Cookies from 'universal-cookie'
 import '../styles/listPropertyForm.css'
+import { updateProfile } from 'firebase/auth'
 
 const cookies = new Cookies()
 export default function ListPropertyForm() {
@@ -55,12 +56,12 @@ export default function ListPropertyForm() {
                     pictures:{...pictureLinks},
                     dateCreated:serverTimestamp(),
             },
-            landLordName:cookies.get('name'),
+            landLordName:cookies.get('name'),   
             landLordId:cookies.get('id')
         }).then(() => {
             alert("Property listed Successfully")
             document.documentElement.style.overflowY = 'scroll'
-            navigate('/')
+            navigate('/')  
         })
     }
 
@@ -119,8 +120,8 @@ export default function ListPropertyForm() {
             .then(res => pictureLinks.push(res))   
         }
 
-        const hotelsRef = collection(db, "resorts")
-        await addDoc(hotelsRef, {
+        const resortsRef = collection(db, "resorts")
+        await addDoc(resortsRef, {
             propertyDetails:{
                 propertyName:propertyName,
                 country:country,
@@ -128,7 +129,8 @@ export default function ListPropertyForm() {
                 address2:address2,
                 zipCode:zipCode,
                 propertyType:"resort",
-                rating:starRating,
+                roomCount:roomCount,
+                allowedPeoplePerRoom:allowedPeoplePerRoom,
                 pricePerMonth:pricePerMonth,
                 pictures:{...pictureLinks},
                 dateCreated:serverTimestamp(),
@@ -166,8 +168,13 @@ export default function ListPropertyForm() {
             </div>
             
             <div className="inputs-wrappers">
-                <label>Street name and house number</label>
+                <label>City</label>
                 <input type="text" required value={address} onChange={e => setAddress(e.target.value)}/>
+            </div>
+
+            <div className="inputs-wrappers">
+                <label>Street name and house number</label>
+                <input type="text" required value={address2} onChange={e => setAddress2(e.target.value)}/>
             </div>
 
             <div className="inputs-wrappers">
@@ -234,7 +241,7 @@ export default function ListPropertyForm() {
 
             <div className="inputs-wrappers">
                 <label>Address</label>
-                <input type="number" required value={address2} onChange={e => setAddress2(e.target.value)} />
+                <input type="text" required value={address2} onChange={e => setAddress2(e.target.value)} />
             </div>
 
             <div className="inputs-wrappers">

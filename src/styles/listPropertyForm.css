@@ -13,6 +13,9 @@
     align-items: center;
     justify-content: space-around;
 }
+.list-property-form{
+    height: 80vh;
+}
 .inputs-wrappers{
     width: 300px;
     display:flex;

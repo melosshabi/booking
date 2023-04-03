@@ -29,7 +29,6 @@ export default function SignIn() {
             window.location.reload()
           })
         }catch(err){
-          console.log(err.code)
           switch(err.code){
             case 'auth/wrong-password':
               setError('Incorrect Password')

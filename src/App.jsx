@@ -9,15 +9,19 @@ import PropertyBrowser from './Components/PropertyBrowser'
 import PropertyDetails from './Components/propertyDetails'
 import ReserveForm from './Components/ReserveForm'
 import UserProfile from './Components/UserProfile'
+import QueryResults from './Components/QueryResults'
 // 
 import Cookies from 'universal-cookie'
 import whiteCaret from './images/white-Caret.svg'
 import { signOut } from 'firebase/auth'
 import {auth} from './firebase-config'
 import './App.css'
+import { useState } from 'react'
 
 const cookies = new Cookies()
 function App() {
+
+  const [path, setPath] = useState('')
 
   function toggleMoreOptions(){
     const caret = document.querySelector('.more-options-btn img')
@@ -33,7 +37,8 @@ function App() {
       cookies.remove('name')
       cookies.remove('id')
       cookies.remove('email')
-      window.location.pathname = '/#/'
+      setPath('/#/')
+      window.location.pathname = path
     })
   }
 
@@ -66,6 +71,7 @@ function App() {
         <Route path="/listPropertyForm" exact element={<ListPropertyForm/>}/>
         <Route path="/propertyBrowser" exact element={<PropertyBrowser/>}/>
         <Route path="/propertyDetails" exact element={<PropertyDetails/>}/>
+        <Route path="/queryResults" exact element={<QueryResults/>}/>
         <Route path="/reserveForm" exact element={<ReserveForm/>}/>
         <Route path="/userProfile" exact element={<UserProfile/>}/>
       </Routes> 

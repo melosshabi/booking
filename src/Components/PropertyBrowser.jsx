@@ -29,7 +29,7 @@ export default function PropertyBrowser() {
 
         return finalStr;
     }
-
+    
     return (
     <div className='property-browser-wrapper'>
         <h2>Find the perfect {capitalize(location.state.propertyType)} on booking</h2>
