@@ -18,7 +18,7 @@ export default function QueryResults() {
                             <img src={property.propertyDetails.pictures[0]} />
                         </div>
                         <div className="query-property-details">
-                            <Link className="property-link">{property.propertyDetails.propertyName}</Link>
+                            <Link className="property-link" to="/propertyDetails" state={{property:property}}>{property.propertyDetails.propertyName}</Link>
                             <span>{property.propertyDetails.address + " " + property.propertyDetails.address2}</span>
                         </div>
                     </div>

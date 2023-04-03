@@ -8,7 +8,7 @@ export default function PropertyDetails() {
   
   const location = useLocation()
   const property = location.state.property
-  console.log(property)
+
   const pictures = useRef([])
   const picturesObj = property.propertyDetails.pictures
   const userObj = useRef()
@@ -31,13 +31,10 @@ export default function PropertyDetails() {
     for(let i = 0; i < usersSavedPropertiesLength; i++){
     
       if(userObj.current.savedProperties[`property${i}`].propertyDocId === property.docId){
-        console.log(true)
         const saveBtn = document.querySelector('.save-btn')
         const unsaveBtn = document.querySelector('.unsave-btn')
         saveBtn.style.display = 'none';
         unsaveBtn.style.display = "block";
-      }else{
-         document.querySelector('.save-btn').style.display = 'block'
       }
     }
   })
