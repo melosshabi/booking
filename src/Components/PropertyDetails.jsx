@@ -9,7 +9,6 @@ export default function PropertyDetails() {
   
   const location = useLocation()
   const property = location.state.property
-  console.log(property)
   const pictures = useRef([])
   const picturesObj = property.propertyDetails.pictures
   const userObj = useRef()
@@ -210,7 +209,6 @@ export default function PropertyDetails() {
           
         <div className="reviews">
             {reviews.map((review, index) =>{
-              console.log(review)
               return (
                 <div className="review" key={index}>
                   <div className="review-img-wrapper">

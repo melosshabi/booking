@@ -51,7 +51,7 @@ export default function UserProfile() {
         })
     },[])
         
-    async function editProfile(targetBtn, oldName, oldEmail){
+    async function editProfile(targetBtn){
         const loader = document.querySelector('.loader-wrapper')
 
         if(targetBtn === document.querySelector('.edit-profile-btn')){
@@ -79,6 +79,7 @@ export default function UserProfile() {
         }
         
     }
+    
     const options = {
         profile:'profile',
         savedProperties:'savedProperties',

@@ -10,6 +10,7 @@ import PropertyDetails from './Components/propertyDetails'
 import ReserveForm from './Components/ReserveForm'
 import UserProfile from './Components/UserProfile'
 import QueryResults from './Components/QueryResults'
+import AdminPage from './Components/AdminPage'
 // 
 import Cookies from 'universal-cookie'
 import whiteCaret from './images/white-Caret.svg'
@@ -22,6 +23,7 @@ const cookies = new Cookies()
 function App() {
 
   const [path, setPath] = useState('')
+  const [adminId, setAdminId] = useState('')
 
   function toggleMoreOptions(){
     const caret = document.querySelector('.more-options-btn img')
@@ -41,6 +43,7 @@ function App() {
       window.location.pathname = path
     })
   }
+  auth.onAuthStateChanged(()=> {if(auth.currentUser.uid = 'rdFbsm57EJMUGeEXAmKSH1NXv822') setAdminId(auth.currentUser.uid)})
 
   return (
     <Router>
@@ -56,6 +59,7 @@ function App() {
               <div className="more-options">
                   <ul>
                     <li><Link to="/userProfile">My Profile</Link></li>
+                    {adminId === 'rdFbsm57EJMUGeEXAmKSH1NXv822' && <li><Link to="/adminPage">Admin Page</Link></li>}
                     <li><button className="sign-out-btn" onClick={logOut}>Sign Out</button></li>
                   </ul>
                 </div>
@@ -74,6 +78,7 @@ function App() {
         <Route path="/queryResults" exact element={<QueryResults/>}/>
         <Route path="/reserveForm" exact element={<ReserveForm/>}/>
         <Route path="/userProfile" exact element={<UserProfile/>}/>
+        <Route path="/adminPage" exact element={<AdminPage/>}/>
       </Routes> 
     </Router>
   )

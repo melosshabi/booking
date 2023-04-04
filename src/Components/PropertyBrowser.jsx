@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import {query, collection, orderBy, getDocs} from 'firebase/firestore'
 import {db} from '../firebase-config'
+import capitalize from '../functions/Capitalize'
 import '../styles/propertyBrowser.css'
 export default function PropertyBrowser() {
 
@@ -20,15 +21,6 @@ export default function PropertyBrowser() {
         }
         fetchProperties()
     }, [])
-    
-    function capitalize(str){
-        let tempStr = str.split("")
-        let upperCaseLetter = tempStr[0].toUpperCase()
-        tempStr[0] = upperCaseLetter
-        let finalStr = tempStr.join("")
-
-        return finalStr;
-    }
     
     return (
     <div className='property-browser-wrapper'>

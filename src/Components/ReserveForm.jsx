@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import {doc, collection, addDoc, getDocs, query, where, updateDoc} from 'firebase/firestore'
 import {db, auth} from '../firebase-config'
+import capitalize from '../functions/Capitalize'
 import '../styles/reserveForm.css'
 
 export default function ReserveForm() {
@@ -60,7 +61,7 @@ export default function ReserveForm() {
                 <img className="selected-property-img" src={property.propertyDetails.pictures[0]}/>
             </div>
             <div className="selected-property-details">
-                <span>{property.propertyDetails.propertyType}</span>
+                <span>{capitalize(property.propertyDetails.propertyType)}</span>
                 <h2 style={{marginBottom:"10px"}}>{property.propertyDetails.propertyName}</h2>
                 <span>{property.propertyDetails.address + " " + property.propertyDetails.address2}</span>
             </div>
