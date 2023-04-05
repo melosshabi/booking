@@ -124,12 +124,10 @@ export default function PropertyDetails() {
     userSnapshot.forEach(doc => userDocument = ({...doc.data(), userDocId:doc.id}))
 
     let savedPropertiesLength = Object.keys(userDocument.savedProperties).length
-    console.log("UserDoc:",userDocument)
 
     for(let i = 0; i < savedPropertiesLength; i++){
 
         if(userDocument.savedProperties[`property${i}`].propertyDocId === propertyId){
-          console.log("Property ID:", propertyId)
           if(userDocument.savedProperties[`property${i}`] === userDocument.savedProperties[`property${savedPropertiesLength - 1}`]){
             delete userDocument.savedProperties[`property${i}`]
           }else{

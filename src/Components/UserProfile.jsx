@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
-import {doc, getDocs, collection, query, where, getDoc} from 'firebase/firestore'
+import {doc, getDocs, collection, query, where, getDoc, updateDoc, deleteDoc} from 'firebase/firestore'
 import {db, auth} from '../firebase-config'
 import '../styles/userProfile.css'
 import { sendPasswordResetEmail, updateEmail, updateProfile } from 'firebase/auth'
@@ -144,6 +144,61 @@ export default function UserProfile() {
         
         setListedProperties(listedProperties)
     }
+
+    function toggleUserMoreOptions(i){
+        const unlistBtn = document.querySelectorAll('.unlist-property-btn')[i]
+        unlistBtn.classList.toggle('active-unlist-btn')
+    }
+
+    async function unSaveProperty(propertyId, targetBtn){
+        targetBtn.classList.remove('active-unlist-btn')
+
+        const usersCollection = collection(db, 'users')
+        const userQuery = query(usersCollection, where('id', '==', auth.currentUser.uid))
+        const userSnapshot = await getDocs(userQuery)
+    
+        let userDocument = {}
+        userSnapshot.forEach(doc => userDocument = ({...doc.data(), userDocId:doc.id}))
+    
+        let savedPropertiesLength = Object.keys(userDocument.savedProperties).length
+    
+        for(let i = 0; i < savedPropertiesLength; i++){
+    
+            if(userDocument.savedProperties[`property${i}`].propertyDocId === propertyId){
+              if(userDocument.savedProperties[`property${i}`] === userDocument.savedProperties[`property${savedPropertiesLength - 1}`]){
+                delete userDocument.savedProperties[`property${i}`]
+              }else{
+                let newValueForDeletedIndex = userDocument.savedProperties[`property${savedPropertiesLength - 1}`]
+                delete userDocument.savedProperties[`property${i}`]
+                
+                console.log(newValueForDeletedIndex)
+                delete userDocument.savedProperties[`property${savedPropertiesLength - 1}`]
+                userDocument.savedProperties[`property${i}`] = newValueForDeletedIndex
+    
+                savedPropertiesLength = Object.keys(userDocument.savedProperties).length
+              }
+            }
+        }
+        
+        const userDocRef = doc(db, 'users', userDocument.userDocId)
+        delete userDocument.userDocId
+        await updateDoc(userDocRef, userDocument)
+        .then(() => window.location.reload())
+      }    
+
+    async function unlistProperty(propertyType, id, targetBtnIndex){
+        const unlistBtn = document.querySelectorAll('.unlist-btn')
+        unlistBtn[targetBtnIndex]
+
+        let propCollectionName = propertyType === 'hotel' ? 'hotels' : propertyType === 'apartment' ? 'apartments' : propertyType === 'resort' ? 'resorts' : ''
+        const docRef = doc(db, propCollectionName, id)
+        await deleteDoc(docRef)
+        .then(() =>{
+            alert("Property was unlisted!")
+            window.location.reload()
+        })
+    }
+
   return (
     <div className='user-profile-wrapper'>
         <div className="loader-wrapper"><span className="loader"></span></div>
@@ -192,7 +247,9 @@ export default function UserProfile() {
                 <h2>Saved Properties</h2>
                     {savedPropertiesData.map((prop, index) =>{
                         return (
-                            <div className="saved-property-wrapper" key={index}>
+                            <div className="saved-property-wrapper" key={index} style={{position:'relative'}}>
+                                <button className="properties-more-options-btn" onClick={() => toggleUserMoreOptions(index)}>···</button>
+                            <button className="unlist-property-btn" onClick={e => unSaveProperty(prop.docId, e.target)}>Unsave Property</button>
                                 <div className="saved-property-img-wrapper">
                                     <img src={prop.propertyDetails.pictures[0]}/>
                                 </div>
@@ -236,7 +293,9 @@ export default function UserProfile() {
                 <h2>My Properties</h2>
                 {listedProperties.map((property, index) => {
                     return (
-                        <div className="listed-property" key={index}>
+                        <div className="listed-property" key={index} style={{position:'relative'}}>
+                            <button className="properties-more-options-btn" onClick={() => toggleUserMoreOptions(index)}>···</button>
+                            <button className="unlist-property-btn" onClick={() => unlistProperty(property.propertyDetails.propertyType, property.docId, index)}>Unlist Property</button>
                             <div className="listed-property-img-wrapper">
                                 <img src={property.propertyDetails.pictures[0]} />
                             </div>
