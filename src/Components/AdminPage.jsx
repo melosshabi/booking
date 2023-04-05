@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {Link} from 'react-router-dom'
 import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore'
+import {sendPasswordResetEmail} from 'firebase/auth'
 import {db, auth} from '../firebase-config'
 import '../styles/adminPage.css'
 
@@ -120,6 +121,13 @@ export default function AdminPage() {
         moreOptionsDiv.classList.toggle("active-admin-options")
     }
 
+    async function sendResetPasswordEmail(email, i){
+        const moreOptionsDiv = document.querySelectorAll('.more-admin-options')[i]
+        moreOptionsDiv.classList.toggle('active-admin-options')
+        await sendPasswordResetEmail(auth, email)
+        .then(() => alert("Reset password email was sent!"))
+    }
+
     async function deleteProperty(propertyType, docId){
         console.log(docId)
         const propertyRef = doc(db, propertyType, docId)
@@ -144,11 +152,16 @@ export default function AdminPage() {
             {/* Users */}
             {activeOption === adminOptions.users && 
                 <div className="users">
+                    <h2 style={{fontSize:'2em', textAlign:'center'}}>Users</h2>    
                     {users.map((user, index)=>{
                         let date = user.accountCreatedAt.toDate()
                         let fullDate = resolveDate(date)
                         return (
-                            <div className="user" key={index}>
+                            <div className="user" key={index} style={{position:'relative'}}>
+                                <button className="more-admin-options-btn" onClick={() => toggleAdminOptions(index)}>···</button>
+                                <div className="more-admin-options" style={{right:'-180px'}}>
+                                    <button onClick={() => sendResetPasswordEmail(user.email, index)}>Send Reset Password Email</button>
+                                </div>
                                 <h2>Name: {user.name}</h2>
                                 <h3>Email: {user.email}</h3>
                                 <p>ID: {user.id}</p>
