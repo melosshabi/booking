@@ -22,8 +22,9 @@ import { useState } from 'react'
 const cookies = new Cookies()
 function App() {
 
-  const [path, setPath] = useState('')
   const [adminId, setAdminId] = useState('')
+
+  auth.onAuthStateChanged(()=> {if(auth.currentUser.uid !== null && auth.currentUser.uid === 'uf5IaiAiv1Y4OlIruvX1Er2I0Sd2') setAdminId(auth.currentUser.uid)})
 
   function toggleMoreOptions(){
     const caret = document.querySelector('.more-options-btn img')
@@ -39,11 +40,10 @@ function App() {
       cookies.remove('name')
       cookies.remove('id')
       cookies.remove('email')
-      setPath('/#/')
-      window.location.pathname = path
+      window.location = '/#/'
+      window.location.reload()
     })
   }
-  auth.onAuthStateChanged(()=> {if(auth.currentUser.uid = 'rdFbsm57EJMUGeEXAmKSH1NXv822') setAdminId(auth.currentUser.uid)})
 
   return (
     <Router>
@@ -59,7 +59,7 @@ function App() {
               <div className="more-options">
                   <ul>
                     <li><Link to="/userProfile">My Profile</Link></li>
-                    {adminId === 'rdFbsm57EJMUGeEXAmKSH1NXv822' && <li><Link to="/adminPage">Admin Page</Link></li>}
+                    {adminId === 'uf5IaiAiv1Y4OlIruvX1Er2I0Sd2' && <li><Link to="/adminPage">Admin Page</Link></li>}
                     <li><button className="sign-out-btn" onClick={logOut}>Sign Out</button></li>
                   </ul>
                 </div>

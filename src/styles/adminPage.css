@@ -59,7 +59,69 @@
 .user{
     padding:10px;
     border:1px solid gray;
+    margin:20px 0;
 }
 .user h2, .user h3, .user p {
     margin:5px 0;
+}
+/* Properties */
+.hotels-wrapper, .apartments-wrapper, .resorts-wrapper{
+    width: 75vw;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+.hotels-wrapper h2, .apartments-wrapper h2, .resorts-wrapper h2{
+    font-size: 2em;
+    margin:10px 0;
+}
+.p-details{
+    margin:5px 0;
+}
+.admin-listed-property{
+    height: 25%;
+}
+.listed-property-img-wrapper{
+    display: flex;
+    align-items: center;
+}
+.more-admin-options-btn{
+    position: absolute;
+    right:10px;
+    font-size: 1.5em;
+    background:none;
+    border:none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 250ms;
+}
+.more-admin-options-btn:hover{
+    background-color: rgba(0, 0, 0, .2);
+}
+.more-admin-options{
+    height: 30px;
+    border:1px solid gray;
+    border-radius: 5px;
+    position: absolute;
+    right:-110px;
+    top:10px;
+    display: none;
+}
+.active-admin-options{
+    display: flex;
+}
+.more-admin-options button{
+    width: 100%;
+    height: 100%;
+    background: white;
+    border:none;
+    border-radius: 4px;
+    padding:5px;
+    cursor: pointer;
+    transition: all 250ms;
+}
+.more-admin-options button:hover{
+    background-color: rgba(0, 0, 0, .1);
 }

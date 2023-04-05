@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import {doc, getDocs, collection, query, where, getDoc} from 'firebase/firestore'
 import {db, auth} from '../firebase-config'
 import '../styles/userProfile.css'
-import { updateEmail, updateProfile } from 'firebase/auth'
+import { sendPasswordResetEmail, updateEmail, updateProfile } from 'firebase/auth'
 import Cookies from 'universal-cookie'
-
 
 const cookies = new Cookies()
 export default function UserProfile() {
@@ -17,6 +16,8 @@ export default function UserProfile() {
     const [savedPropertiesData, setSavedPropertiesData] = useState([])
     const [madeReservationsData, setMadeReservationsData] = useState([])
     const [listedProperties, setListedProperties] = useState([])
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         auth.onAuthStateChanged(() => {
@@ -74,10 +75,20 @@ export default function UserProfile() {
                 cookies.set('email', email)
                 alert("Profile Updated Successfully")
                 window.location.reload()
-            })
-                
+            })       
         }
-        
+    }
+
+    async function resetPassword(){
+        await sendPasswordResetEmail(auth, cookies.get('email'))
+        .then(() => {
+            cookies.remove('auth-token')
+            cookies.remove('email')
+            cookies.remove('id')
+            cookies.remove('name')
+            alert("Reset password email has been sent!")
+            navigate('/')
+        })
     }
     
     const options = {
@@ -91,11 +102,11 @@ export default function UserProfile() {
     function switchProfileOption(newOption, targetButton){
         if(newOption === selectedOption) return
 
-        const buttons = document.querySelectorAll('.sidebar-btns')
+        const buttons = document.querySelectorAll('.user-sidebar-btns')
         for(let i = 0; i < buttons.length; i++){
-            buttons[i].classList.remove('active-option')
+            buttons[i].classList.remove('user-active-option')
         }
-        targetButton.classList.add('active-option')
+        targetButton.classList.add('user-active-option')
         setSelectedOption(newOption)
 
         if(newOption === options.savedProperties) fetchSavedProperties()
@@ -139,10 +150,10 @@ export default function UserProfile() {
         <div className="sidebar">
 
             <ul className="sidebar-options">
-                <li><button className='sidebar-btns active-option' onClick={e => switchProfileOption(options.profile, e.target)}>Profile</button></li>    
-                <li><button className='sidebar-btns' onClick={e => switchProfileOption(options.savedProperties, e.target)}>Saved Properties</button></li>
-                <li><button className='sidebar-btns' onClick={e => switchProfileOption(options.reservations, e.target)}>Reservations</button></li> 
-                <li><button className='sidebar-btns' onClick={e => switchProfileOption(options.myProperties, e.target)}>My Properties</button></li> 
+                <li><button className='user-sidebar-btns user-active-option' onClick={e => switchProfileOption(options.profile, e.target)}>Profile</button></li>    
+                <li><button className='user-sidebar-btns' onClick={e => switchProfileOption(options.savedProperties, e.target)}>Saved Properties</button></li>
+                <li><button className='user-sidebar-btns' onClick={e => switchProfileOption(options.reservations, e.target)}>Reservations</button></li> 
+                <li><button className='user-sidebar-btns' onClick={e => switchProfileOption(options.myProperties, e.target)}>My Properties</button></li> 
             </ul>    
         </div>
         
@@ -167,7 +178,7 @@ export default function UserProfile() {
                         <label>Password</label>
                         <div className="reset-password-wrapper">
                             <input className='password-input' type="password" value="*********" disabled/>
-                            <button className="reset-password-btn">Reset Password</button>
+                            <button className="reset-password-btn" onClick={() => resetPassword()}>Reset Password</button>
                         </div>
                         <button className='edit-profile-btn' onClick={e => editProfile(e.target, name, email)}>Edit Profile</button><button className='edit-profile-btn save-changes-btn' onClick={e => editProfile(e.target)}>Save Changes</button>
                         </div>

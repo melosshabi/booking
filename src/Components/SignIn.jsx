@@ -26,6 +26,7 @@ export default function SignIn() {
             cookies.set('email', res.user.email)
             cookies.set('name', res.user.displayName)
             cookies.set('id', res.user.uid)
+            console.log(auth.currentUser)
             window.location.reload()
           })
         }catch(err){

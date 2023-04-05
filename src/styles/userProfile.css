@@ -41,7 +41,8 @@ body{
 .sidebar{
     width: 20%;
     height: 100%;
-    background-color: var(--darkBlue);
+    background-color: var(--blue);
+    border-top: 1px solid white;
     display: flex;
     align-items: center;
 }
@@ -52,7 +53,7 @@ body{
     flex-direction: column;
     justify-content: space-between;
 }   
-.sidebar-btns{
+.user-sidebar-btns{
     width: 100%;
     font-size: 1.5em;
     background: none;
@@ -67,7 +68,7 @@ body{
 .sidebar-btns:hover{
     background-color: rgba(0, 0, 0, .2);
 }
-.active-option{
+.user-active-option{
     background-color: rgba(0, 0, 0, .2);
 }
 .details-div{
