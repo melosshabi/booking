@@ -1,4 +1,5 @@
 import React, {useRef, useState, useEffect} from 'react'
+import Navbar from './Navbar'
 import { useLocation, Link } from 'react-router-dom'
 import {query, doc, updateDoc, getDocs, collection, where, addDoc} from 'firebase/firestore'
 import {db, auth} from '../firebase-config'
@@ -169,6 +170,7 @@ export default function PropertyDetails() {
 
   return (
     <>
+    <Navbar/>
     <div className='property-details-wrapper'>
         <h2>{property.propertyDetails.propertyName}</h2>
         <span className="address-span">{property.propertyDetails.country + ", " + property.propertyDetails.address + ", " + property.propertyDetails.address2}</span>

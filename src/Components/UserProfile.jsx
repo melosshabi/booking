@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import Navbar from './Navbar'
 import {Link, useNavigate} from 'react-router-dom'
 import {doc, getDocs, collection, query, where, getDoc, updateDoc, deleteDoc} from 'firebase/firestore'
 import {db, auth} from '../firebase-config'
@@ -199,6 +200,8 @@ export default function UserProfile() {
     }
 
   return (
+    <>
+    <Navbar/>
     <div className='user-profile-wrapper'>
         <div className="loader-wrapper"><span className="loader"></span></div>
         <div className="sidebar">
@@ -311,5 +314,6 @@ export default function UserProfile() {
             }
         </div>
     </div>
+    </>
   )
 }

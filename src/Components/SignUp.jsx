@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import Navbar from './Navbar'
 import { useNavigate } from 'react-router-dom'
 import {auth} from '../firebase-config'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
@@ -62,6 +63,8 @@ export default function SignUp() {
         
     }
   return (
+    <>
+    <Navbar/>
     <div className='sign-up-wrapper'>
         <h3>Create an account</h3>
         <form className="sign-up-form" onSubmit={e => createAccount(e)}>
@@ -81,5 +84,6 @@ export default function SignUp() {
         </form>
         
     </div>
+    </>
   )
 }

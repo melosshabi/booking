@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import Navbar from './Navbar'
 import { useLocation, useNavigate } from 'react-router-dom'
 import {doc, collection, addDoc, getDocs, query, where, updateDoc} from 'firebase/firestore'
 import {db, auth} from '../firebase-config'
@@ -54,6 +55,8 @@ export default function ReserveForm() {
         })
     }
   return (
+    <>
+    <Navbar/>
     <div className='reserve-form-wrapper'>
 
         <div className="selected-property">
@@ -113,5 +116,6 @@ export default function ReserveForm() {
             <button className="finish-reservation-btn">Make Reservation</button>
         </form>
     </div>
+    </>
   )
 }

@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useRef, useState} from 'react'
+import Navbar from './Navbar'
 import {Link, useNavigate} from 'react-router-dom'
 import {collection, query, getDocs, where} from 'firebase/firestore'
 import {db} from '../firebase-config'
@@ -11,14 +12,14 @@ export default function Home() {
 
     const navigate = useNavigate()
 
-    const [city, setCity] = useState('')
+    const city = useRef()
     const [propertyType, setPropertyType] = useState('')
 
     async function fetchQuery(){
         if(city === '' || propertyType === '') return
 
         const collectionRef = collection(db, propertyType.toLowerCase())
-        const docsQuery = query(collectionRef, where('propertyDetails.address', '==', city))
+        const docsQuery = query(collectionRef, where('propertyDetails.address', '==', city.current))
         const fetchedDocs = []
         const snapshot = await getDocs(docsQuery)
         snapshot.forEach(doc => fetchedDocs.push({...doc.data(), docId:doc.id}))
@@ -29,6 +30,7 @@ export default function Home() {
 
   return (
     <div className='home-wrapper'>
+        <Navbar/>
         <div className="home-content-wrapper">
             <div className="home-text">
                 <h2>Find your next stay</h2>
@@ -38,7 +40,7 @@ export default function Home() {
         
         <div className="search-wrapper">
             <div className="inputs-wrapper">
-                <input id="search-bar" type="text" placeholder='Where are you going?' value={city} onChange={e => setCity(e.target.value)}/>
+                <input id="search-bar" type="text" placeholder='Where are you going?' value={city.current} onChange={e => city.current = e.target.value}/>
                 <select onChange={e => setPropertyType(e.target.value)}>
                     <option>-Select Property Type-</option>
                     <option>Apartments</option>

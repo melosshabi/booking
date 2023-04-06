@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
+import Navbar from './Navbar'
 import { useLocation, useNavigate } from 'react-router-dom'
 import {addDoc, collection, serverTimestamp} from 'firebase/firestore'
 import {uploadBytes, ref, getDownloadURL} from 'firebase/storage'
 import {db, storage} from '../firebase-config'
 import Cookies from 'universal-cookie'
 import '../styles/listPropertyForm.css'
-import { updateProfile } from 'firebase/auth'
 
 const cookies = new Cookies()
 export default function ListPropertyForm() {
@@ -145,6 +145,8 @@ export default function ListPropertyForm() {
     }
 
   return (
+    <>
+    <Navbar/>
     <div className='list-property-form-wrapper'>
         <div className="creating-listing">
             <h2>Creating Listing...</h2>
@@ -315,5 +317,6 @@ export default function ListPropertyForm() {
             
         </form>}
     </div>
+    </>
   )
 }

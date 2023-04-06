@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Navbar from './Navbar'
 import { useLocation, Link } from 'react-router-dom'
 import {query, collection, orderBy, getDocs} from 'firebase/firestore'
 import {db} from '../firebase-config'
@@ -23,6 +24,8 @@ export default function PropertyBrowser() {
     }, [])
     
     return (
+    <>
+    <Navbar/>
     <div className='property-browser-wrapper'>
         <h2>Find the perfect {capitalize(location.state.propertyType)} on booking</h2>
         <div className="properties-wrapper">
@@ -48,5 +51,6 @@ export default function PropertyBrowser() {
             
         </div>
     </div>
+    </>
   )
 }

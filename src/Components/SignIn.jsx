@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import Navbar from './Navbar';
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase-config';
@@ -45,7 +46,10 @@ export default function SignIn() {
     }
 
   return (
+    <>
+    <Navbar/>
     <div className='sign-up-wrapper'>
+      
         <h3>Sign in</h3>
         <form className="sign-up-form" onSubmit={e => signIn(e)}>
            
@@ -61,5 +65,6 @@ export default function SignIn() {
         </form>
         
     </div>
+    </>
   )
 }

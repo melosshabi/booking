@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import React from 'react'
+import Navbar from './Navbar'
+import { Link } from 'react-router-dom'
 import Cookies from 'universal-cookie'
 import apartments from '../images/apartments.jpeg'
 import hotel from '../images/hotel.jpeg'
@@ -9,13 +10,9 @@ import '../styles/listProperty.css'
 const cookies = new Cookies()
 export default function ListProperty() {
 
-    const navigate = useNavigate()
-
-    useEffect(()=>{
-        if(!cookies.get("auth-token")) navigate('/')
-    }, [])
-
   return (
+    <>
+    <Navbar/>
     <div className='list-property-wrapper'>
         <h2>To get started choose your property type below:</h2>
         <div className="property-types-wrapper">
@@ -38,5 +35,6 @@ export default function ListProperty() {
             </div>
         </div>
     </div>
+    </>
   )
 }

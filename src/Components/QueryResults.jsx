@@ -1,4 +1,5 @@
 import React from 'react'
+import Navbar from './Navbar'
 import {Link, useLocation} from 'react-router-dom'
 import '../styles/queryResults.css'
 
@@ -6,7 +7,10 @@ export default function QueryResults() {
 
     const location = useLocation()
     const properties = location.state.docs
+    console.log(properties)
     return (
+    <>
+    <Navbar/>
     <div className='query-results-wrapper'>
         <h2>Properties in {properties[0].propertyDetails.address}</h2>
         <div className="query-properties-wrapper">
@@ -27,5 +31,6 @@ export default function QueryResults() {
             })}
         </div>
     </div>
+    </>
   )
 }
