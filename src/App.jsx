@@ -17,9 +17,6 @@ import './App.css'
 function App() {
   return (
     <Router>
-      <div className="App">
-        {/* <Websitewrapper/> */}
-      </div>
     <Routes>
       <Route path="/" exact element={<Home/>}/>
       <Route path="/signUp" exact element={<SignUp/>}/>

@@ -10,10 +10,6 @@ const cookies = new Cookies()
 export default function Navbar() {
 
     const navigate = useNavigate() 
-
-    const [adminId, setAdminId] = useState('')
-
-    auth.onAuthStateChanged(()=> {if(auth.currentUser !== null && auth.currentUser.uid === 'uf5IaiAiv1Y4OlIruvX1Er2I0Sd2') setAdminId(auth.currentUser.uid)})
   
     function toggleMoreOptions(){
       const caret = document.querySelector('.more-options-btn img')
@@ -46,7 +42,7 @@ export default function Navbar() {
               <div className="more-options">
                   <ul>
                     <li><Link to="/userProfile">My Profile</Link></li>
-                    {adminId === 'uf5IaiAiv1Y4OlIruvX1Er2I0Sd2' && <li><Link to="/adminPage">Admin Page</Link></li>}
+                    {auth.onAuthStateChanged(() => auth.currentUser === 'uf5IaiAiv1Y4OlIruvX1Er2I0Sd2' ? true : false)  && <li><Link to="/adminPage">Admin Page</Link></li>}
                     <li><button className="sign-out-btn" onClick={logOut}>Sign Out</button></li>
                   </ul>
                 </div>

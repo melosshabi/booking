@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import {addDoc, collection, serverTimestamp} from 'firebase/firestore'
 import {uploadBytes, ref, getDownloadURL} from 'firebase/storage'
 import {db, storage} from '../firebase-config'
+import {auth} from '../firebase-config'
 import Cookies from 'universal-cookie'
 import '../styles/listPropertyForm.css'
 
@@ -12,6 +13,7 @@ export default function ListPropertyForm() {
 
     const location = useLocation()
     const navigate = useNavigate()
+    const [fullName, setFullName] = useState('')
     const [propertyName, setPropertyName] = useState('')
     const [country, setCountry] = useState('')
     const [address, setAddress] = useState('')
@@ -30,34 +32,34 @@ export default function ListPropertyForm() {
     async function createApartmentListing(e){
         e.preventDefault()
 
-        if(pictures.length < 5) setError("Please select at least 5 photos")
         window.scrollTo(0, 0)
         document.documentElement.style.overflow = 'hidden'
         document.querySelector('.creating-listing').classList.add('active-creating')
         
         let pictureLinks = []
         for(let i = 0; i < pictures.length; i++){
-            const pictureRef = ref(storage, `${cookies.get('id')}/apartments/${propertyName}/${propertyName + i}`)
+            const pictureRef = auth.currentUser ? ref(storage, `${cookies.get('id')}/apartments/${propertyName}/${propertyName + i}`) : ref(storage, `${fullName}/apartments/${propertyName}/${propertyName + i}`) 
             await uploadBytes(pictureRef, pictures[i])
             await getDownloadURL(pictureRef)
             .then(res => pictureLinks.push(res))
-            
         }
 
         const collectionRef = collection(db, 'apartments')
+        
         await addDoc(collectionRef, {
                 propertyDetails:{
                     propertyName:propertyName,
                     country:country,
                     address:address,
+                    address2:address2,
                     zipCode:zipCode,
                     pricePerNight:pricePerNight,
                     propertyType:"apartment",
                     pictures:{...pictureLinks},
                     dateCreated:serverTimestamp(),
             },
-            landLordName:cookies.get('name'),   
-            landLordId:cookies.get('id')
+            landLordName:auth.currentUser ? cookies.get('name') : fullName,   
+            landLordId:auth.currentUser ? cookies.get('id') : ''
         }).then(() => {
             alert("Property listed Successfully")
             document.documentElement.style.overflowY = 'scroll'
@@ -75,7 +77,7 @@ export default function ListPropertyForm() {
 
         let pictureLinks = []
         for(let i = 0; i < pictures.length; i++){
-            const pictureRef = ref(storage, `${cookies.get('id')}/hotels/${propertyName}/${propertyName + i}`)
+            const pictureRef = auth.currentUser ? ref(storage, `${cookies.get('id')}/hotels/${propertyName}/${propertyName + i}`) : ref(storage, `${fullName}/hotels/${propertyName}/${propertyName + i}`)
             await uploadBytes(pictureRef, pictures[i])
             await getDownloadURL(pictureRef)
             .then(res => pictureLinks.push(res))   
@@ -95,8 +97,8 @@ export default function ListPropertyForm() {
                 pictures:{...pictureLinks},
                 dateCreated:serverTimestamp(),
         },
-        landLordName:cookies.get('name'),
-        landLordId:cookies.get('id')
+        landLordName:auth.currentUser ? cookies.get('name') : fullName,   
+        landLordId:auth.currentUser ? cookies.get('id') : ''
     }).then(() => {
         alert("Property listed Successfully")
         document.documentElement.style.overflowY = 'scroll'
@@ -114,7 +116,7 @@ export default function ListPropertyForm() {
 
         let pictureLinks = []
         for(let i = 0; i < pictures.length; i++){
-            const pictureRef = ref(storage, `${cookies.get('id')}/resorts/${propertyName}/${propertyName + i}`)
+            const pictureRef = auth.currentUser ? ref(storage, `${cookies.get('id')}/resorts/${propertyName}/${propertyName + i}`) : ref(storage, `${fullName}/hotels/${propertyName}/${propertyName + i}`)
             await uploadBytes(pictureRef, pictures[i])
             await getDownloadURL(pictureRef)
             .then(res => pictureLinks.push(res))   
@@ -135,8 +137,8 @@ export default function ListPropertyForm() {
                 pictures:{...pictureLinks},
                 dateCreated:serverTimestamp(),
         },
-        landLordName:cookies.get('name'),
-        landLordId:cookies.get('id')
+        landLordName:auth.currentUser ? cookies.get('name') : fullName,   
+        landLordId:auth.currentUser ? cookies.get('id') : ''
     }).then(() =>{
         alert("Property listed Successfully")
         document.documentElement.style.overflow = "scroll"
@@ -159,7 +161,10 @@ export default function ListPropertyForm() {
             <>
             
             <div className="inputs-wrappers"><label>Property Name</label><input type="text" required value={propertyName} onChange={e => setPropertyName(e.target.value)}/></div>
-
+            {!auth.currentUser && <div className='inputs-wrappers'>
+                    <label>Your Full Name</label>
+                    <input type="text" value={fullName} onChange={e => setFullName(e.target.value)}/>
+                </div>}
             <div className="inputs-wrappers">
                 <label>Country/Region</label>
                     <select onChange={e => setCountry(e.target.value)}>

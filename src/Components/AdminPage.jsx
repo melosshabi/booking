@@ -6,14 +6,18 @@ import { collection, getDocs, doc, deleteDoc, updateDoc } from 'firebase/firesto
 import {sendPasswordResetEmail} from 'firebase/auth'
 import {db, auth} from '../firebase-config'
 import closeIcon from '../images/close-icon.png'
+import whiteCaret from '../images/white-caret.svg'
+import Cookies from 'universal-cookie'
 import '../styles/adminPage.css'
 
+const cookies = new Cookies()
 export default function AdminPage() {
 
     const navigate = useNavigate()
 
+    auth.onAuthStateChanged(()=> {if(auth.currentUser !== null && auth.currentUser.uid === 'uf5IaiAiv1Y4OlIruvX1Er2I0Sd2') setAdminId(auth.currentUser.uid)})
+  
     useEffect(()=>{
-        console.log(auth)
         if(auth.currentUser === null || auth.currentUser.uid !== 'uf5IaiAiv1Y4OlIruvX1Er2I0Sd2') navigate('/')
         fetchUsers()
         return () => fetchUsers()
@@ -63,7 +67,6 @@ export default function AdminPage() {
         propType === 'hotels' ? setHotels(props):
         propType === 'apartments' ? setApartments(props):
         propType === 'resorts' ? setResorts(props): ''
-
     }
 
     function resolveDate(date){
@@ -121,7 +124,7 @@ export default function AdminPage() {
     }
 
     async function sendResetPasswordEmail(email, i){
-        const moreOptionsDiv = document.querySelectorAll('.more-admin-options')[i]
+        const moreOptionsDiv = document.querySelectorAll('.users-more-admin-options')[i]
         moreOptionsDiv.classList.toggle('active-admin-options')
         await sendPasswordResetEmail(auth, email)
         .then(() => alert("Reset password email was sent!"))
@@ -183,7 +186,7 @@ export default function AdminPage() {
     }
   return (
     <>
-    <Navbar/>
+     <Navbar/>
     <div className='admin-page-wrapper'>
         <div className="admin-sidebar">
             <ul>
