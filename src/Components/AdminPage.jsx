@@ -291,7 +291,7 @@ export default function AdminPage() {
                         <button className="more-admin-options-btn" onClick={() => toggleAdminOptions(index, 'property')}>···</button>
                         <div className="properties-more-admin-options">
                             <button onClick={() => deleteProperty('resorts', resort.docId)}>Delete Property</button>
-                            <button onClick={() => deleteProperty('show', resort)}>Edit Property</button>
+                            <button onClick={() => editProperty('show', resort)}>Edit Property</button>
                         </div>
                         <div className="listed-property-img-wrapper">
                             <img src={resort.propertyDetails.pictures[0]} />

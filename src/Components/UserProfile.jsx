@@ -65,17 +65,16 @@ export default function UserProfile() {
                 inputs[i].disabled = false
             }
         }else if(targetBtn === document.querySelector('.save-changes-btn')){
-            
+
             loader.style.display = "flex"
             await updateProfile(auth.currentUser, {displayName:name})
             await updateEmail(auth.currentUser, email)
-            .then(res=>{
-                console.log(res)
+            .then(() =>{
                 cookies.set('name', name)
                 cookies.set('email', email)
-                alert("Profile Updated Successfully")
+                alert('Profile Updated Successfully')
                 window.location.reload()
-            })       
+            })   
         }
     }
 
