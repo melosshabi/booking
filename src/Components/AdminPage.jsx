@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {Link} from 'react-router-dom'
-import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore'
+import { collection, getDocs, doc, deleteDoc, updateDoc } from 'firebase/firestore'
 import {sendPasswordResetEmail} from 'firebase/auth'
 import {db, auth} from '../firebase-config'
+import closeIcon from '../images/close-icon.png'
 import '../styles/adminPage.css'
 
 export default function AdminPage() {
@@ -116,9 +117,9 @@ export default function AdminPage() {
         return {day, month, year}
     }
 
-    function toggleAdminOptions(i){
-        const moreOptionsDiv = document.querySelectorAll('.more-admin-options')[i]
-        moreOptionsDiv.classList.toggle("active-admin-options")
+    function toggleAdminOptions(i, targetMenu){
+        if(targetMenu === "usersMenu") document.querySelectorAll('.users-more-admin-options')[i].classList.toggle("active-admin-options")
+        else if(targetMenu === "property") document.querySelectorAll('.properties-more-admin-options')[i].classList.toggle("active-admin-options")
     }
 
     async function sendResetPasswordEmail(email, i){
@@ -129,11 +130,56 @@ export default function AdminPage() {
     }
 
     async function deleteProperty(propertyType, docId){
-        console.log(docId)
         const propertyRef = doc(db, propertyType, docId)
         await deleteDoc(propertyRef)
         .then(() => {
             alert("Property Deleted Successfully!")
+            window.location.reload()
+        })
+    }
+
+    // Variablat per pronen qe ka mu editu
+    const [objectOfPropertyToBeUpdated, setObjectOfPropertyToBeUpdated] = useState({})
+    const [newName, setNewName] = useState('')
+    const [newCountry, setNewCountry] = useState('')
+    const [newAddress, setNewAddress] = useState('')
+    const [newAddress2, setNewAddress2] = useState('')
+    const [newZipCode, setNewZipCode] = useState('')
+
+    function editProperty(action, property){
+        const editForm = document.querySelector('.edit-property-wrapper')
+        if(action === 'show'){
+            editForm.style.display = 'flex'
+            setObjectOfPropertyToBeUpdated(property)
+            setNewName(property.propertyDetails.propertyName)
+            setNewAddress(property.propertyDetails.address)
+            setNewAddress2(property.propertyDetails.address2)
+            setNewZipCode(property.propertyDetails.zipCode)
+            document.documentElement.style.overflow = 'hidden'
+            document.documentElement.scrollTo(0, 0)
+        } 
+        else if(action === 'hide') editForm.style.display = 'none'
+    }
+
+    async function savePropertyChanges(property, e, newName, newCountry, newAddress, newAddress2, newZipCode){
+        e.preventDefault()
+
+        document.querySelector('.submit-editted-property').classList.add('disabled-btn')
+
+        const propertyRef = doc(db, `${property.propertyDetails.propertyType}s`, property.docId)
+        await updateDoc(propertyRef, {
+            landLordId:property.landLordId,
+            landLordName:property.landLordName,
+            propertyDetails:{
+                ...property.propertyDetails,
+                propertyName:newName,
+                country:newCountry,
+                address:newAddress,
+                address2:newAddress2,
+                zipCode:newZipCode
+            }
+        }).then(() => {
+            alert("Property has been updated successfully")
             window.location.reload()
         })
     }
@@ -150,6 +196,7 @@ export default function AdminPage() {
 
         <div className="admin-page-details-div">
             {/* Users */}
+            <h2 style={{textAlign:'center', fontSize:"2em", margin:'20px 0'}}>Admin Page</h2>
             {activeOption === adminOptions.users && 
                 <div className="users">
                     <h2 style={{fontSize:'2em', textAlign:'center'}}>Users</h2>    
@@ -158,8 +205,8 @@ export default function AdminPage() {
                         let fullDate = resolveDate(date)
                         return (
                             <div className="user" key={index} style={{position:'relative'}}>
-                                <button className="more-admin-options-btn" onClick={() => toggleAdminOptions(index)}>···</button>
-                                <div className="more-admin-options" style={{right:'-180px'}}>
+                                <button className="more-admin-options-btn" onClick={() => toggleAdminOptions(index, 'usersMenu')}>···</button>
+                                <div className="users-more-admin-options" style={{right:'-180px'}}>
                                     <button onClick={() => sendResetPasswordEmail(user.email, index)}>Send Reset Password Email</button>
                                 </div>
                                 <h2>Name: {user.name}</h2>
@@ -181,9 +228,10 @@ export default function AdminPage() {
 
                 return (
                     <div className="listed-property admin-listed-property" key={index} style={{position:'relative'}}>
-                        <button className="more-admin-options-btn" onClick={() => toggleAdminOptions(index)}>···</button>
-                        <div className="more-admin-options">
+                        <button className="more-admin-options-btn" onClick={() => toggleAdminOptions(index, 'property')}>···</button>
+                        <div className="properties-more-admin-options">
                             <button onClick={() => deleteProperty('hotels', hotel.docId)}>Delete Property</button>
+                            <button onClick={() => editProperty('show', hotel)}>Edit Property</button>
                         </div>
                         <div className="listed-property-img-wrapper">
                             <img src={hotel.propertyDetails.pictures[0]}/>
@@ -209,9 +257,10 @@ export default function AdminPage() {
                     let fullDate = resolveDate(date)
                     return (
                     <div className="listed-property admin-listed-property" key={index} style={{position:'relative'}}>
-                        <button className="more-admin-options-btn" onClick={() => toggleAdminOptions(index)}>···</button>
-                        <div className="more-admin-options">
+                        <button className="more-admin-options-btn" onClick={() => toggleAdminOptions(index, 'property')}>···</button>
+                        <div className="properties-more-admin-options">
                             <button onClick={() => deleteProperty('apartments', apartment.docId)}>Delete Property</button>
+                            <button onClick={() => editProperty('show', apartment)}>Edit Property</button>
                         </div>
                         <div className="listed-property-img-wrapper">
                             <img src={apartment.propertyDetails.pictures[0]} />
@@ -239,9 +288,10 @@ export default function AdminPage() {
                     let fullDate = resolveDate(date)
                     return (
                     <div className="listed-property admin-listed-property" key={index} style={{position:'relative'}}>
-                        <button className="more-admin-options-btn" onClick={() => toggleAdminOptions(index)}>···</button>
-                        <div className="more-admin-options">
+                        <button className="more-admin-options-btn" onClick={() => toggleAdminOptions(index, 'property')}>···</button>
+                        <div className="properties-more-admin-options">
                             <button onClick={() => deleteProperty('resorts', resort.docId)}>Delete Property</button>
+                            <button onClick={() => deleteProperty('show', resort)}>Edit Property</button>
                         </div>
                         <div className="listed-property-img-wrapper">
                             <img src={resort.propertyDetails.pictures[0]} />
@@ -258,6 +308,42 @@ export default function AdminPage() {
                 )})}
                 </div>
                 }
+
+                <div className="edit-property-wrapper">
+                    <button className="close-edit-form" onClick={() => editProperty('hide')}>
+                        <img src={closeIcon}/>
+                    </button>
+                        <form className="edit-property-form" onSubmit={e => savePropertyChanges(objectOfPropertyToBeUpdated, e, newName, newCountry, newAddress, newAddress2, newZipCode)}>
+                            
+                            <div className="edit-inputs-wrappers">
+                                <label>Property Name</label>
+                            <input required type="text" placeholder='Property Name' value={newName} onChange={e => setNewName(e.target.value)}/>
+                            </div>
+
+                            <select required onChange={e => setNewCountry(e.target.value)}>
+                                <option>--Select Country--</option>
+                                <option>Kosovo</option>
+                                <option>Albania</option>
+                            </select>
+
+                            <div className="edit-inputs-wrappers">
+                                <label>City</label>
+                                <input required type="text" placeholder='City' value={newAddress} onChange={e => setNewAddress(e.target.value)}/>
+                            </div>
+
+                            <div className="edit-inputs-wrappers">
+                                <label>Address</label>
+                                <input required type="text" placeholder='Address' value={newAddress2} onChange={e => setNewAddress2(e.target.value)}/>
+                            </div>
+
+                            <div className="edit-inputs-wrappers">
+                                <label>Zip Code</label>
+                                <input required type="text" placeholder='Zip Code' value={newZipCode} onChange={e => setNewZipCode(e.target.value)}/>
+                            </div>
+
+                            <button className="submit-editted-property">Save Changes</button>
+                        </form>
+                </div>
         </div>
     </div>
   )

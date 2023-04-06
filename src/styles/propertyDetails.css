@@ -15,12 +15,13 @@
     top:10px;
 }
 .property-details-images-wrapper{
-    height: 85%;
+    height: 75%;
     width:100%;
     margin-top: 40px;
     display: flex;
     align-items: center;
     flex-direction: column;
+    justify-content: center;
     overflow: hidden;
 }
 .prop-img{
@@ -43,12 +44,12 @@
 .prev-arrow{
     left:10px;
     top:50%;
-    transform: translateY(-80%);
+    transform: translateY(-50%);
 }
 .next-arrow{
     right:10px;
     top:50%;
-    transform:translateY(-80%)
+    transform:translateY(-50%)
 }
 .property-details-btns-wrapper{
     width: 400px;

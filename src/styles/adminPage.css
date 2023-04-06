@@ -52,9 +52,12 @@
 /* Users */
 .users{
     width: 65%;
-    height: fit-content;
+    height: 65%;
     margin:auto;
     margin-top: 7%;
+    overflow-y:scroll;
+    border:1px solid gray;
+    padding:10px;
 }
 .user{
     padding:10px;
@@ -67,11 +70,12 @@
 /* Properties */
 .hotels-wrapper, .apartments-wrapper, .resorts-wrapper{
     width: 75vw;
-    height: 90vh;
+    height: 79.5vh;
     display: flex;
     align-items: center;
     flex-direction: column;
     overflow-y: scroll;
+    border-top:1px solid gray;
 }
 .hotels-wrapper h2, .apartments-wrapper h2, .resorts-wrapper h2{
     font-size: 2em;
@@ -81,7 +85,7 @@
     margin:5px 0;
 }
 .admin-listed-property{
-    height: 25%;
+    height: 30%;
 }
 .listed-property-img-wrapper{
     display: flex;
@@ -100,19 +104,29 @@
 .more-admin-options-btn:hover{
     background-color: rgba(0, 0, 0, .2);
 }
-.more-admin-options{
+.users-more-admin-options, .properties-more-admin-options{
     height: 30px;
     border:1px solid gray;
     border-radius: 5px;
     position: absolute;
     right:-110px;
-    top:10px;
+    top:0;
     display: none;
+}
+.properties-more-admin-options{
+    height: 70px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.users-more-admin-options{
+    width: fit-content;
+    left:550px;
+    top:40px;
 }
 .active-admin-options{
     display: flex;
 }
-.more-admin-options button{
+.users-more-admin-options button, .properties-more-admin-options button{
     width: 100%;
     height: 100%;
     background: white;
@@ -122,6 +136,92 @@
     cursor: pointer;
     transition: all 250ms;
 }
-.more-admin-options button:hover{
+.properties-more-admin-options button{
+    height: 30px;
+    /* background-color: red */
+}
+.users-more-admin-options button:hover, .properties-more-admin-options button:hover{
     background-color: rgba(0, 0, 0, .1);
+}
+
+.edit-property-wrapper{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .7);
+    position: absolute;
+    top:0;
+    left:0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.edit-property-form{
+    height: 75vh;
+    width:50vw;
+    background-color:white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 15px;
+    padding:20px 40px;
+    box-shadow: 0 0 10px var(--lightBlue);
+}
+.edit-property-form h2{
+    font-size: 2em;
+    margin:20px 0;
+}
+.edit-property-form input{
+    width: 300px;
+    font-size: 1em;
+    padding:5px 10px;
+    margin-top: 5px;
+    border:2px solid var(--lightBlue);
+    border-radius: 5px;
+    transition: all 150ms;
+}
+.edit-property-form input:focus{
+    outline:none;
+    box-shadow: 0 0 6px var(--lightBlue);
+}
+.edit-inputs-wrappers{
+    display: flex;
+    flex-direction: column;
+}
+.edit-property-form select{
+    width: 320px;
+    padding:5px 10px;
+    margin:10px 0;
+    background-color: white;
+    border:2px solid var(--lightBlue);
+    border-radius:5px;
+    font-size: 1em;
+}
+.submit-editted-property, .disabled-btn{
+    font-size: 1.2em;
+    padding:10px 50px;
+    cursor: pointer;
+    background-color:var(--lightBlue);
+    border:1px solid white;
+    border-radius: 5px;
+    color:white;
+    transition: all 250ms;
+}
+.submit-editted-property:hover{
+    background-color:var(--blue)
+}
+.disabled-btn{
+    cursor: not-allowed;
+    opacity: .8;
+}
+.close-edit-form{
+    position: absolute;
+    top:20px;
+    right:40px;
+    background: none;
+    border:none;
+    cursor: pointer;
+}
+.close-edit-form img{
+    width: 35px;
 }
