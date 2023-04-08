@@ -1,0 +1,86 @@
+.sign-in-form-wrapper{
+    width: 90dvw;
+    height: 80dvh;
+    margin:auto;
+    margin-top: 3vh;
+    border-radius: 20px;
+    display: flex;
+    background-color: white;
+}
+.sign-in-decoration-div{
+    width: 50%;
+    height: 100%;
+    background-color: var(--blue);
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sign-in-decoration-div h2{
+    font-size: 2.5em;
+}
+.sign-in-form{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    text-align: center;
+}
+.sign-in-form h2{
+    font-size: 2.5em;
+    margin:20px 0;
+}
+.sign-in-inputs-wrapper{
+    height: 40%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    margin:auto;
+}
+.email, .password{
+    margin-top: 20px;
+    font-weight: 100;
+}
+.sign-in-label-wrappers{
+    width: 50%;
+    text-align: start;
+}
+.sign-in-email-label, .sign-in-password-label{
+    margin-left: 10px;
+}
+#error{
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+.sign-in-btn{
+    width: 30%;
+    align-self: center;
+    font-size: 1.2em;
+    margin:20px 0;
+    padding:10px;
+    background: var(--lightBlue);
+    color:white;
+    border:none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 250ms;
+}
+.sign-in-btn:hover{
+    background: var(--blue);
+}
+.dont-have-acc{
+    margin:10px 0;
+}
+.dont-have-acc a{
+    color:var(--lightBlue)
+    
+}

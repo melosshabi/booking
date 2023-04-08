@@ -6,21 +6,16 @@ import { collection, getDocs, doc, deleteDoc, updateDoc } from 'firebase/firesto
 import {sendPasswordResetEmail} from 'firebase/auth'
 import {db, auth} from '../firebase-config'
 import closeIcon from '../images/close-icon.png'
-import whiteCaret from '../images/white-caret.svg'
-import Cookies from 'universal-cookie'
 import '../styles/adminPage.css'
 
-const cookies = new Cookies()
 export default function AdminPage() {
 
     const navigate = useNavigate()
-
-    auth.onAuthStateChanged(()=> {if(auth.currentUser !== null && auth.currentUser.uid === 'uf5IaiAiv1Y4OlIruvX1Er2I0Sd2') setAdminId(auth.currentUser.uid)})
   
     useEffect(()=>{
-        if(auth.currentUser === null || auth.currentUser.uid !== 'uf5IaiAiv1Y4OlIruvX1Er2I0Sd2') navigate('/')
-        fetchUsers()
-        return () => fetchUsers()
+        // if(auth.currentUser === null || auth.currentUser.uid !== 'uf5IaiAiv1Y4OlIruvX1Er2I0Sd2') navigate('/')
+        // fetchUsers()
+        // return () => fetchUsers()
     }, [])
 
     const adminOptions = {
@@ -207,9 +202,9 @@ export default function AdminPage() {
                         let date = user.accountCreatedAt.toDate()
                         let fullDate = resolveDate(date)
                         return (
-                            <div className="user" key={index} style={{position:'relative'}}>
+                            <div className="user" key={index}>
                                 <button className="more-admin-options-btn" onClick={() => toggleAdminOptions(index, 'usersMenu')}>···</button>
-                                <div className="users-more-admin-options" style={{right:'-180px'}}>
+                                <div className="users-more-admin-options">
                                     <button onClick={() => sendResetPasswordEmail(user.email, index)}>Send Reset Password Email</button>
                                 </div>
                                 <h2>Name: {user.name}</h2>

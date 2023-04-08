@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import Navbar from './Navbar';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase-config';
 import Cookies from 'universal-cookie'
+import '../styles/signIn.css'
 
 const cookies = new Cookies()
 
@@ -48,20 +49,29 @@ export default function SignIn() {
   return (
     <>
     <Navbar/>
-    <div className='sign-up-wrapper'>
-      
-        <h3>Sign in</h3>
-        <form className="sign-up-form" onSubmit={e => signIn(e)}>
-           
-            <label className='email-label'>
-            <input className="email" type="email" required value={email} onChange={e => setEmail(e.target.value)}/>
-            </label>
+    <div className='sign-in-form-wrapper'>
+      <div className="sign-in-decoration-div">
+        <h2>Welcome Back!</h2>
+      </div>
+        <form className="sign-in-form" onSubmit={e => signIn(e)}>
+           <h2>Sign in</h2>
+           <div className="sign-in-inputs-wrapper">
 
-            <label className='password-label'>
-            <input className="password" type="password" required value={password} onChange={e => setPassword(e.target.value)}/>
-            </label>
-            <label id="error">{error}</label>
-            <button className='sign-up-btn'>Sign In</button>
+            <div className="sign-in-label-wrappers">
+              <label className='sign-in-email-label'>Email</label>
+              <input className="email" type="email" required value={email} onChange={e => setEmail(e.target.value)}/>
+            </div>
+
+            <div className="sign-in-label-wrappers">
+              <label className='sign-in-password-label'>Password</label>
+              <input className="password" type="password" required value={password} onChange={e => setPassword(e.target.value)}/>
+              <p id="error">{error}</p>
+            </div>
+
+            </div>
+            
+            <button className='sign-in-btn'>Sign In</button>
+            <p className='dont-have-acc'>Don't have an account? <Link to='/signUp'>Sign Up</Link></p>
         </form>
         
     </div>

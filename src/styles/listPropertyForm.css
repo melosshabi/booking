@@ -1,20 +1,106 @@
 .list-property-form-wrapper{
+    height: 100vh;
     font-family: 'Figtree', sans-serif;
-    text-align: center;
+    text-align: center;    
+    background-size:cover;
+    background-repeat: no-repeat;
 }
 .list-property-form-wrapper h2{
-    margin: 20px 0;
+    margin-bottom: 20px;
 }
-.list-property-form, .list-property-form-hotel, .list-property-form-resort{
-    height: 60dvh;
-    margin-top: 10dvh;
+.form-wrapper{
+    width: 90dvw;
+    height: 80dvh;
+    margin:auto;
+    margin-top: 1%;
+    border-radius: 20px;
+    display: flex;
+    background-color: white;
+    color:white;
+}
+.form-wrapper h3{
+    font-size: 1.5em;
+    font-weight: 300;
+}
+.decoration-div{
+    width: 50%;
+    height: 100%px;
+    background: url('/src/images/apartment-paperwork.jpg');
+    background-size: cover;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+}
+.hotel-decoration{
+    background: url('/src/images/hotel-room.jpg');
+    background-size: cover;
+}
+.resort-decoration{
+    background: url('/src/images/resort.jpg');
+    background-size: cover;
+}
+.decoration-text-wrapper{
+    height: 50%;
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 5px black;
+}
+.list-property-form-apartment, .list-property-form-hotel, .list-property-form-resort{
+    width: 50%;
+    height: 100%;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    color:black;
+    position: relative;
+    display: flex;
     align-items: center;
     justify-content: space-around;
+    flex-direction: column;
 }
-.list-property-form{
-    height: 80vh;
+.list-property-form-apartment h2, .list-property-form-hotel h2, .list-property-form-resort h2{
+    position: absolute;
+    top:20px;
+}
+.animation-div{
+    height: 60%;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    position: relative;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
+.right-div, .left-div{
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    transition: all 400ms;
+}
+.right-div{
+    position: absolute;
+    right:-110%;
+}
+.left-div{
+    position: absolute;
+    top:0;
+    left:-100%;
+}
+.active-right-div{
+    right:50%;
+    transform: translateX(50%);
+}
+.active-left-div{
+    left:50%;
+    transform:translateX(-50%)
 }
 .inputs-wrappers{
     width: 300px;
@@ -27,21 +113,36 @@
 }
 .inputs-wrappers input{
     width: 92%;
-    font-size: 1em;
-    padding:5px 10px;
-    outline:2px solid var(--lightBlue);
-    border-radius: 4px;
+    font-size: .9em;
+    padding:10px 10px;
+    outline:1px solid black;
+    border-radius: 5px;
     border:none;
+    transition: all 200ms;
+}
+.inputs-wrappers input[type="file"]{
+    outline:none;
 }
 .inputs-wrappers select{
     font-size: 1em;
     background: white;
-    padding:5px 10px;
+    padding:8px 10px;
     border:none;
     border-radius: 4px;
-    outline:2px solid var(--lightBlue)
+    outline:1px solid black
 }
-.create-list-btn{
+.buttons-wrapper{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 10px;
+    transition: all 400ms;
+}
+.buttons-wrapper-space-between{
+    justify-content: space-between;
+}
+.next-btn, .create-list-btn {
     padding:6px 70px;
     background-color: var(--lightBlue);
     color:white;
@@ -51,7 +152,7 @@
     border-radius: 5px;
     transition: all 200ms;
 }
-.create-list-btn:hover{
+.next-btn:hover, .create-list-btn:hover{
     background-color: var(--blue);
 }
 .creating-listing{
@@ -61,6 +162,7 @@
     position: absolute;
     top:0;
     left:0;
+    z-index: 3;
     display: none;
     justify-content: center;
     align-items: center;
@@ -72,8 +174,4 @@
 }
 .creating-listing h2{
     font-size: 2em;
-}
-/* Hotel Form */
-.list-property-form-hotel, .list-property-form-resort{
-    height: 100dvh;
 }

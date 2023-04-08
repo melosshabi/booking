@@ -174,6 +174,15 @@ export default function PropertyDetails() {
     <div className='property-details-wrapper'>
         <h2>{property.propertyDetails.propertyName}</h2>
         <span className="address-span">{property.propertyDetails.country + ", " + property.propertyDetails.address + ", " + property.propertyDetails.address2}</span>
+        <br/>
+        {property.propertyDetails.propertyType === 'hotel' && <span>{property.propertyDetails.roomCount} rooms available</span>}
+        
+        {property.propertyDetails.propertyType === 'hotel' && <span><br/>Price per night for 1 person: {property.propertyDetails.pricePerNight}$</span>}
+
+        {property.propertyDetails.propertyType === 'apartment' && <span>Price per night: {property.propertyDetails.pricePerNight}$</span>}
+
+        {property.propertyDetails.propertyType === 'resort' && <span>Price per month: {property.propertyDetails.pricePerMonth}$</span>}
+        {property.propertyDetails.propertyType === 'resort' && <span><br/>Allowed people per room: {property.propertyDetails.allowedPeoplePerRoom}</span>}
         <h3 className="landlord">{property.landLordName}</h3>
         <div className="property-details-images-wrapper">
             <button className='prev-arrow' onClick={() => switchImage(actions.previous)}>&#x2039;</button>

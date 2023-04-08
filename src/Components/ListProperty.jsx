@@ -1,13 +1,11 @@
 import React from 'react'
 import Navbar from './Navbar'
 import { Link } from 'react-router-dom'
-import Cookies from 'universal-cookie'
 import apartments from '../images/apartments.jpeg'
 import hotel from '../images/hotel.jpeg'
 import resorts from '../images/resorts.jpeg'
 import '../styles/listProperty.css'
 
-const cookies = new Cookies()
 export default function ListProperty() {
 
   return (
