@@ -1,16 +1,22 @@
 import React from 'react'
+import { useLocation , useNavigate} from 'react-router-dom'
 import Navbar from './Navbar'
-import { useLocation } from 'react-router-dom'
 import ApartmentForm from './ApartmentForm'
 import HotelForm from './HotelForm'
 import ResortForm from './ResortForm'
+import {auth} from '../firebase-config'
 import '../styles/listPropertyForm.css'
 
 
 export default function ListPropertyForm() {
 
     const location = useLocation()
+    const navigate = useNavigate()
 
+    auth.onAuthStateChanged(() => {
+      alert("You need to sign in to list a property")
+      if(auth.currentUser === null) navigate('/signIn')
+    })
   return (
     <>
     <Navbar/>

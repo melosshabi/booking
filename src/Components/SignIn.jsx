@@ -52,6 +52,7 @@ export default function SignIn() {
     <div className='sign-in-form-wrapper'>
       <div className="sign-in-decoration-div">
         <h2>Welcome Back!</h2>
+        <h3>Sign in to get back to using our services</h3>
       </div>
         <form className="sign-in-form" onSubmit={e => signIn(e)}>
            <h2>Sign in</h2>

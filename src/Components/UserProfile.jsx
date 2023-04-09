@@ -204,9 +204,9 @@ export default function UserProfile() {
     <Navbar/>
     <div className='user-profile-wrapper'>
         <div className="loader-wrapper"><span className="loader"></span></div>
-        <div className="sidebar">
+        <div className="user-profile-sidebar">
 
-            <ul className="sidebar-options">
+            <ul className="user-profile-sidebar-options">
                 <li><button className='user-sidebar-btns user-active-option' onClick={e => switchProfileOption(options.profile, e.target)}>Profile</button></li>    
                 <li><button className='user-sidebar-btns' onClick={e => switchProfileOption(options.savedProperties, e.target)}>Saved Properties</button></li>
                 <li><button className='user-sidebar-btns' onClick={e => switchProfileOption(options.reservations, e.target)}>Reservations</button></li> 

@@ -64,3 +64,68 @@
     color:rgba(128, 128, 128, 1);
     margin:5px 0;
 }
+/* iPad Pro 12.9 inch */
+@media (max-width:1024px) and (max-height:1366px){
+    .property-div{
+        width: 90%;
+    }
+}
+/* iPad Pro 11 inch */
+@media (max-width:834px) and (max-height:1194px){
+    .properties-wrapper{
+        width: 90%;
+        margin:auto;
+    }
+    .property-div{
+        width: 100%;
+    }
+}
+/* iPad Mini */
+@media (max-width:768px) and (max-height:1024px){
+    .properties-wrapper{
+        width: 98vw;
+    }
+}
+/* iPhone 12/13 Pro Max */
+@media(max-width:428px){
+    .property-browser-wrapper{
+        margin-top: 8vh;
+    }
+    .property-browser-wrapper h2{
+        width: 100%;
+        margin:auto;
+        margin-bottom: 5vh;
+        font-size: 2em;
+        text-align: center;
+    }
+    .property-img-wrapper{
+        width: 60%;
+        height: 90%;
+    }
+    .property-name, .property-address{
+        margin-left: 10px;
+    }
+    .property-name{
+        display: block;
+        margin-bottom: 10px;
+    }
+}
+/* iPhone SE */
+@media (max-width:375px) and (max-height:667px){
+    .property-browser-wrapper h2{
+        font-size: 1.5em;
+    }
+    .properties-wrapper h3{
+        font-size: 1.1em;
+    }
+    .property-img-wrapper{
+        width: 70%;
+    }
+}
+/* S21FE */
+@media (max-width:360px) and (max-height:800px){
+    .property-img-wrapper{
+        width: 70%;
+        height: 70%;
+    }
+}

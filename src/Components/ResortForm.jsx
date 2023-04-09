@@ -77,8 +77,8 @@ export default function ResortForm(){
                 pictures:{...pictureLinks},
                 dateCreated:serverTimestamp(),
         },
-        landLordName:auth.currentUser ? cookies.get('name') : fullName,   
-        landLordId:auth.currentUser ? cookies.get('id') : ''
+        landLordName:cookies.get('name'),
+        landLordId:cookies.get('id')
     }).then(() =>{
         alert("Property listed Successfully")
         document.documentElement.style.overflow = "scroll"

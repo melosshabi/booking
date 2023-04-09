@@ -3,7 +3,7 @@ import Navbar from './Navbar'
 import { useLocation, Link } from 'react-router-dom'
 import {query, doc, updateDoc, getDocs, collection, where, addDoc} from 'firebase/firestore'
 import {db, auth} from '../firebase-config'
-import user from '../images/user.png'
+import user from '../images/user.svg'
 import '../styles/propertyDetails.css'
 
 export default function PropertyDetails() {
@@ -135,7 +135,6 @@ export default function PropertyDetails() {
             let newValueForDeletedIndex = userDocument.savedProperties[`property${savedPropertiesLength - 1}`]
             delete userDocument.savedProperties[`property${i}`]
             
-            console.log(newValueForDeletedIndex)
             delete userDocument.savedProperties[`property${savedPropertiesLength - 1}`]
             userDocument.savedProperties[`property${i}`] = newValueForDeletedIndex
 
@@ -224,7 +223,7 @@ export default function PropertyDetails() {
                     <img src={user}/>
                   </div>
                   <div className="reviewer-name-wrapper">
-                        <p style={{fontSize:'1.1em',fontWeight:'600px', marginRight:'15px'}}>{review.reviewerName}:</p>
+                        <p style={{fontSize:'1.1em',fontWeight:'600px', marginRight:'20px'}}>{review.reviewerName}:</p>
                       </div>
                     <div className="review-text">
                       

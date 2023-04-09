@@ -1,75 +1,151 @@
-.sign-up-wrapper{
-    width: 60%;
-    height: 70dvh;
+.sign-up-form-wrapper{
+    width: 90dvw;
+    height: 80dvh;
     margin:auto;
-    margin-top: 100px;
-    font-family: 'Figtree', sans-serif;
-    text-align: center;
+    margin-top: 3vh;
+    border-radius: 20px;
+    display: flex;
+    background-color: white;
+    box-shadow: 0 0 5px black;
 }
-.sign-up-wrapper h3{
-    font-size: 1.8em;
-    margin-bottom: 50px;
-    margin-left: 20px;
-}
-.sign-up-form{
-    height: 65%;
-    margin:auto;
+.sign-up-decoration-div{
+    width: 50%;
+    height: 100%;
+    background-color: var(--blue);
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    color:white;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+}
+.sign-up-decoration-div h2{
+    font-size: 2.5em;
+}
+.sign-up-decoration-div h3{
+    font-weight: 100;
+    margin-top: 10px;
+}
+.sign-up-form{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    text-align: center;
+}
+.sign-up-form h2{
+    font-size: 2.5em;
+    margin:20px 0;
+}
+.sign-up-inputs-wrapper{
+    height: 40%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
     justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    margin:auto;
 }
-.name, .email, .password{
-    width: 100%;
-    font-size: 1.1em;
-    padding:5px 10px;
-    outline:1px solid black;
-    border-radius: 3px;
-    border:none;
-    margin-left: 10px;
-    position: relative;
-}
-.email:focus, .password:focus{
-    outline:2px solid var(--blue);
-}   
-.name-label, .email-label, .password-label{
-    position: relative;
-    width: 30%;
-}
-.name-label::before{
-    content:"Name";
-    position:absolute;
-    top:-25px;
-    left:10px;
-    font-weight: 300;
-}
-.email-label::before{
-    content:"Email Address";
-    position:absolute;
-    top:-25px;
-    left:10px;
-    font-weight: 300;
-}
-.password-label::before{
-    content:"Passowrd";
-    position:absolute;
-    top:-25px;
-    left:10px;
-    font-weight: 300;
+.sign-up-label-wrappers{
+    width: 50%;
+    height: fit-content;
+    display: flex;
+    text-align: start;
+    justify-content: center;
+    flex-direction: column;
 }
 #error{
-    margin-left:20px;
-    color:rgb(206, 26, 26);
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
 }
 .sign-up-btn{
-    width: 32%;
-    font-size: 1em;
-    padding:7px 10px;
-    background-color: var(--lightBlue);
+    width: 30%;
+    align-self: center;
+    font-size: 1.2em;
+    margin:20px 0;
+    padding:10px;
+    background: var(--lightBlue);
     color:white;
-    font-weight: 300;
     border:none;
     border-radius: 5px;
-    margin-left: 35px;
     cursor: pointer;
+    transition: all 250ms;
+}
+.sign-up-btn:hover{
+    background: var(--blue);
+}
+.dont-have-acc{
+    margin:10px 0;
+}
+.dont-have-acc a{
+    color:var(--lightBlue)
+    
+}
+/* iPad Pro 12.9 inch */
+@media (max-width:1024px) and (max-height:1366px){
+    .sign-up-form-wrapper{
+        height: 80vh;
+    }
+    .sign-up-decoration-div{
+        display: none;
+    }
+    .sign-up-form{
+        width: 90%;
+        height: 90%;
+        margin:auto;
+    }
+}
+/* iPad Pro 11 inch */
+@media (max-width:834px) and (max-height:1194px){
+    .sign-up-inputs-wrapper{
+        width: 100%;
+    }
+    .sign-up-label-wrappers{
+        width: 65%;
+    }
+}
+/* iphone 12/13 Pro Max */
+@media (max-width:428px) and (max-height:926px){
+    .sign-up-form-wrapper{
+        height: 92vh;
+        width: 100vw;
+        margin-top: 0;
+        border-radius: 0;
+    }
+    .sign-up-form{
+        width: 98%;
+        margin:auto;
+        margin-top:0;
+    }
+    .sign-up-label-wrappers{
+        width: 80%;
+    }
+    .sign-up-btn{
+        width: 60%;
+    }
+    .sign-up-form h2{
+        margin:0;
+        margin-top: 20px;
+    }
+    .sign-up-inputs-wrapper{
+        height: 40%;
+    }
+}
+/* iPhone SE */
+@media (max-width:375px) and (max-height:667px){
+    .sign-up-inputs-wrapper{
+        height: 50%;
+    }
+}
+/* S21FE */
+@media (max-width:360px) and (max-height:800px){
+   .sign-up-inputs-wrapper{
+    height: 45%;
+   }
 }

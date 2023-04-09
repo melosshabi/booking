@@ -33,7 +33,7 @@ export default function PropertyBrowser() {
             {properties.map((property, index) => {
                 return (
                 <div className="property-div" key={index}>
-                    <div className="property-img-wrapper"><img className='property-img' src={property.propertyDetails.pictures[0]}/></div>
+                    <div className="property-img-wrapper"><Link to="/propertyDetails" state={{property:property}}><img className='property-img' src={property.propertyDetails.pictures[0]}/></Link></div>
                     <div className="property-details">
                     <Link to="/propertyDetails" state={{property:property}} className='property-name'>{property.propertyDetails.propertyName}</Link>
                     <p className='property-address'>{property.propertyDetails.address}</p>

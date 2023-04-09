@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Navbar from './Navbar'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import {auth} from '../firebase-config'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import Cookies from 'universal-cookie'
@@ -65,22 +65,34 @@ export default function SignUp() {
   return (
     <>
     <Navbar/>
-    <div className='sign-up-wrapper'>
-        <h3>Create an account</h3>
+    <div className='sign-up-form-wrapper'>
+      <div className="sign-up-decoration-div">
+        <h2>Welcome!</h2>
+        <h3>Create your account to get started with our services</h3>
+      </div>
         <form className="sign-up-form" onSubmit={e => createAccount(e)}>
-            <label className='name-label'>
-            <input className="name" type="text" required value={name} onChange={e => setName(e.target.value)}/>
-            </label>
+           <h2>Sign up</h2>
+           <div className="sign-up-inputs-wrapper">
 
-            <label className='email-label'>
-            <input className="email" type="email" required value={email} onChange={e => setEmail(e.target.value)}/>
-            </label>
+            <div className="sign-up-label-wrappers">
+              <label>Full Name</label>
+              <input type="text" className='name' required value={name} onChange={e => setName(e.target.value)}/>
+            </div>
+            <div className="sign-up-label-wrappers">
+              <label className='sign-up-email-label'>Email</label>
+              <input className="email" type="email" required value={email} onChange={e => setEmail(e.target.value)}/>
+            </div>
 
-            <label className='password-label'>
-            <input className="password" type="password" required value={password} onChange={e => setPassword(e.target.value)}/>
-            </label>
-            <label id="error">{error}</label>
-            <button className='sign-up-btn'>Sign Up</button>
+            <div className="sign-up-label-wrappers">
+              <label className='sign-up-password-label'>Password</label>
+              <input className="password" type="password" required value={password} onChange={e => setPassword(e.target.value)}/>
+              <p id="error">{error}</p>
+            </div>
+
+            </div>
+            
+            <button className='sign-up-btn'>Sign up</button>
+            <p className='dont-have-acc'>Already have an account? <Link to='/signIn'>Sign In</Link></p>
         </form>
         
     </div>

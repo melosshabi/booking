@@ -158,7 +158,10 @@
     margin:20px 0;
 }
 .review-img-wrapper{
-    width: fit-content;
+    width: 80px;
+}
+.review-img-wrapper img{
+    width: 100%;
 }
 .reviewer-name-wrapper{
     width: fit-content;
@@ -171,4 +174,34 @@
 .review-text{
     width: 80%;
     line-height: 1.5;
+}
+/* iPad Pro 12.9 inch */
+@media (max-width:1024px) and (max-height:1366px){
+    .property-details-wrapper{
+        width: 90vw;
+    }
+    .reviews-wrapper{
+        width: 90vw;
+    }
+    .review{
+        width: 90%;
+    }
+}
+/* iPad Pro 11 inch */
+@media (max-width:834px) and (max-height:1194px){
+    .property-details-wrapper{
+        width: 95vw;
+    }
+    .reviews-wrapper{
+        width: 95vw;
+    }
+    .review-input-wrapper{
+        width: 90%;
+    }
+    .reviews{
+        width: 90%;
+    }
+    .review{
+        width: 100%;
+    }
 }

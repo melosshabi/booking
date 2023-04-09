@@ -13,9 +13,9 @@ export default function AdminPage() {
     const navigate = useNavigate()
   
     useEffect(()=>{
-        // if(auth.currentUser === null || auth.currentUser.uid !== 'uf5IaiAiv1Y4OlIruvX1Er2I0Sd2') navigate('/')
-        // fetchUsers()
-        // return () => fetchUsers()
+        if(auth.currentUser === null || auth.currentUser.uid !== 'uf5IaiAiv1Y4OlIruvX1Er2I0Sd2') navigate('/')
+        fetchUsers()
+        return () => fetchUsers()
     }, [])
 
     const adminOptions = {
