@@ -20,6 +20,23 @@ export default function ReserveForm() {
     const [arrivalDate, setArrivalDate] = useState('')
     const [arrivalTime, setArrivalTime] = useState('')
 
+
+    function toggleNextFormStep(){
+        const leftDiv = document.querySelector('.reservation-form-left-div')
+        const rightDiv = document.querySelector('.reservation-form-right-div')
+        const nextBtn = document.querySelector('.next-reservation-btn')
+
+        if(leftDiv.classList.contains('active-form-left-div')){
+            leftDiv.classList.remove('active-form-left-div')
+            rightDiv.classList.add('active-form-right-div')
+            nextBtn.innerText = 'Back'
+        }else{
+            rightDiv.classList.remove('active-form-right-div')
+            leftDiv.classList.add('active-form-left-div')
+            nextBtn.innerText = "Next"
+        }
+    }
+
     async function makeReservation(e){
         e.preventDefault()
 
@@ -66,14 +83,16 @@ export default function ReserveForm() {
             <div className="selected-property-details">
                 <span>{capitalize(property.propertyDetails.propertyType)}</span>
                 <h2 style={{marginBottom:"10px"}}>{property.propertyDetails.propertyName}</h2>
-                <span>{property.propertyDetails.address + " " + property.propertyDetails.address2}</span>
+                <span style={{display:'block', marginBottom:'5px'}}>{property.propertyDetails.address + " " + property.propertyDetails.address2}</span>
             </div>
         </div>
 
         {/* Form */}
         <form className="selected-property-reservation-form" onSubmit={e => makeReservation(e)}>
-            <h2>Enter your details</h2>
+            <h2>Fill out the form below to make your reservation</h2>
 
+            <div className="animation-div reservation-animation-div">
+            <div className="reservation-form-left-div active-form-left-div">
             <div className="inputs-wrappers">
                 <label>First Name</label>
                 <input type="text" required value={firstName} onChange={e => setFirstName(e.target.value)}/>
@@ -93,16 +112,15 @@ export default function ReserveForm() {
                 <label>Phone Number</label>
                 <input type="number" required value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)}/>
             </div>
-            <div className="inputs-wrappers">
-                <label>Special Requests</label>
-                <textarea className="special-requests" maxLength="5000" value={specialRequests} onChange={e => setSpecialRequests(e.target.value.length)}></textarea>
             </div>
 
+            <div className="reservation-form-right-div">
+
             <div className="inputs-wrappers arrival-time">
-                <h2>Your arrival time</h2>
+                <h3>Your arrival time</h3>
                 <input type="date" required onChange={e => setArrivalDate(e.target.value)}/>
                 <select required onChange={e => setArrivalTime(e.target.value)}>
-                    <option>Please Select</option>
+                    <option>--Arrival Time--</option>
                     <option>I don't know</option>
                     <option>3:00 PM - 4:00 PM</option>
                     <option>5:00 PM - 6:00 PM</option>
@@ -113,7 +131,18 @@ export default function ReserveForm() {
                     <option>1:00 AM - 2:00 AM 	&#40;The next day&#41;</option>
                 </select>
             </div>
-            <button className="finish-reservation-btn">Make Reservation</button>
+
+            <div className="inputs-wrappers">
+                <label>Special Requests</label>
+                <textarea className="special-requests" maxLength="5000" value={specialRequests} onChange={e => setSpecialRequests(e.target.value)}></textarea>
+            </div>
+
+            </div>
+            </div>
+            <div className="reservation-form-btns-wrapper">
+                <button className="next-reservation-btn" onClick={toggleNextFormStep} type="button">Next</button>
+                <button className="finish-reservation-btn">Make Reservation</button>
+            </div>
         </form>
     </div>
     </>

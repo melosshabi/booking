@@ -44,3 +44,36 @@
 .property-link:hover{
     text-decoration: underline;
 }
+/* iPad Pro 12.9 inch */
+@media (max-width:1024px) and (max-height:1366px){
+    .query-property{
+        min-width: 70vw;
+        max-width: 70vw;
+    }
+}
+/* iPad Pro 11 inch */
+@media (max-width:834px) and (max-height:1194px){
+    .query-property{
+        min-width: 80vw;
+        max-width: 80vw;
+    }
+}
+/* 12/13 Pro Max */
+@media (max-width:428px) and (max-height:926px){
+    .query-results-wrapper{
+        margin-top: 10vh;
+    }
+    .query-property{
+        min-width: 90vw;
+        max-width: 90vw;
+        flex-direction: column;
+    }
+    .query-property-img-wrapper{
+        width: 100%;
+        margin-bottom: 10%;
+    }
+    .query-property-img-wrapper img{
+        width: 100%;
+    
+    }
+}

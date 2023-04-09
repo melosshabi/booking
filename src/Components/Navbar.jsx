@@ -41,7 +41,14 @@ export default function Navbar() {
   
   function toggleSidebar(){
     const sidebar = document.querySelector('.sidebar')
-    sidebar.classList.toggle('active-sidebar')
+    if(!sidebar.classList.contains('active-sidebar')){
+      sidebar.classList.add('active-sidebar')
+      document.documentElement.style.overflow = "hidden"
+    }else{
+      sidebar.classList.remove('active-sidebar')
+      document.documentElement.style.overflowY = 'scroll';
+    }
+    
   }
   return (
         <div>
@@ -78,7 +85,7 @@ export default function Navbar() {
             <div className="sidebar-options">
                 <ul>
                   <li><Link to="/" onClick={toggleSidebar}>Home</Link></li>
-                  {cookies.get('auth-token') && <li><Link to="/" onClick={toggleSidebar}>List your property</Link></li>}
+                  {cookies.get('auth-token') && <li><Link to="/listProperty" onClick={toggleSidebar}>List your property</Link></li>}
                 </ul>
             </div>
 

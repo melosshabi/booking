@@ -160,6 +160,9 @@
     .sign-in-form{
         width: 95%;
     }
+    .sign-in-form h2{
+        margin-top: 10vh;
+    }
     .sign-in-inputs-wrapper{
         height: 35%;
         margin-top: 20%;

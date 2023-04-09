@@ -69,6 +69,7 @@ nav{
   color:white;
   cursor: pointer;
   position: relative;
+  z-index: 3;
 }
 .more-options-btn img{
   width: 30px;

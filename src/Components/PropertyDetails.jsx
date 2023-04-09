@@ -199,12 +199,13 @@ export default function PropertyDetails() {
             })}
             <button className='next-arrow' onClick={() => switchImage(actions.next)}>&#x203A;</button>
         
-            <div className="property-details-btns-wrapper">
+           
+        </div>
+        <div className="property-details-btns-wrapper">
                 <Link className="reserve-btn" to="/reserveForm" state={{...property}}>Reserve Now</Link>
                 <button className="save-btn" onClick={() => saveProperty(property.docId, property.propertyDetails.propertyType)}>Save property</button>
                 <button className="unsave-btn" onClick={() => unSaveProperty(property.docId)}>Unsave Property</button>
             </div>
-        </div>
     </div>
 
     <div className="reviews-wrapper">

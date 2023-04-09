@@ -52,6 +52,15 @@
     border-radius: 3px;
     cursor: pointer;
 }
+.prop-search-error{
+    position: absolute;
+    bottom: -25px;
+    color:red;
+    display: none;
+}
+.active-error{
+    display: block;
+}
 .user-icon, .caret-icon{
     width: 20px;
     display: inline-block;
@@ -175,6 +184,7 @@
     }
     .recommendations{
         width: 90vw;
+        margin-top: 5vh;
     }
 }
 /* iPad Pro 11 inch */
@@ -220,8 +230,12 @@
     .search-btn{
         padding:8px
     }
+    .prop-search-error{
+        bottom:-40px;
+        text-align: center;
+    }
     .recommendations{
-        margin-top: 20%;
+        margin-top: 30%;
         padding:10px 5px;
     }
     .hotels, .apartments, .resorts{
@@ -238,7 +252,7 @@
         top:-60px;
     }
     .recommendations{
-        margin-top: 23%;
+        margin-top: 35%;
     }   
 }
 /* iPhone 12/13 Pro*/
@@ -253,7 +267,7 @@
         top:-50px
     }
     .recommendations{
-        margin-top: 27%;
+        margin-top: 40%;
     }
 }
 /* iPhone SE */

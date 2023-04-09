@@ -14,8 +14,9 @@ export default function ListPropertyForm() {
     const navigate = useNavigate()
 
     auth.onAuthStateChanged(() => {
-      alert("You need to sign in to list a property")
-      if(auth.currentUser === null) navigate('/signIn')
+      if(auth.currentUser === null){
+        navigate('/signIn')
+      } 
     })
   return (
     <>

@@ -17,6 +17,7 @@
     display: flex;
     background-color: white;
     color:white;
+    box-shadow: 0 0 5px black;
 }
 .form-wrapper h3{
     font-size: 1.5em;
@@ -174,4 +175,60 @@
 }
 .creating-listing h2{
     font-size: 2em;
+}
+/* iPad Pro 12 inch */
+@media (max-width:1024px) and (max-height:1366px){
+    .decoration-div{
+        display: none;
+    }
+    .form-wrapper{
+        margin-top: 10vh;
+        height: 50vh;
+    }
+    .list-property-form-apartment, .list-property-form-hotel, .list-property-form-resort{
+        width: 100%;
+    }
+}
+/* iPad Pro 11 inch */
+@media (max-width:834px) and (max-height:1194px){
+    .form-wrapper{
+        height: 60vh;
+    }
+    .buttons-wrapper{
+        width: 70%;
+    }
+}
+/* iPad Mini */
+@media (max-width:768px) and (max-height:1024px){
+    .form-wrapper{
+        height: 70vh;
+    }
+}
+/* iPhone 12/13 Pro Max */
+@media (max-width:428px) and (max-height:926px){
+    .form-wrapper{
+        width: 100vw;
+        height: 100vh;
+        margin:0;
+        margin-top: 8vh;
+        border-radius: 0;
+    }
+    .buttons-wrapper{
+        width: 95%;
+    }
+    .next-btn, .create-list-btn{
+        padding:10px 50px;
+    }
+}
+/* iPhone 12/13 Pro */
+@media (max-width:390px) and (max-height:844px){
+    .next-btn, .create-list-btn{
+        padding:10px 40px;
+    }
+}
+/* S21FE */
+@media (max-width:360px) and (max-height:800px){
+    .next-btn, .create-list-btn{
+        padding:10px 35px;
+    }
 }

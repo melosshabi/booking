@@ -21,6 +21,10 @@ export default function UserProfile() {
     const navigate = useNavigate()
 
     useEffect(() => {
+        console.log(window.screen.width)
+        if(window.screen.width <= 1024){
+            document.querySelector('.user-profile-sidebar').classList.add('mobile-user-profile-sidebar')
+        }
         auth.onAuthStateChanged(() => {
             async function fetchProfile(){
                 const usersCollectionRef = collection(db, 'users')
@@ -102,6 +106,13 @@ export default function UserProfile() {
     function switchProfileOption(newOption, targetButton){
         if(newOption === selectedOption) return
 
+        const sidebar = document.querySelector('.user-profile-sidebar')
+        const ul = document.querySelector('.user-profile-sidebar-options')
+
+        if(sidebar.classList.contains('mobile-user-profile-sidebar')){
+            sidebar.classList.toggle('active-user-profile-sidebar')
+            ul.classList.toggle('active-user-profile-sidebar-options')
+        }
         const buttons = document.querySelectorAll('.user-sidebar-btns')
         for(let i = 0; i < buttons.length; i++){
             buttons[i].classList.remove('user-active-option')
@@ -199,13 +210,30 @@ export default function UserProfile() {
         })
     }
 
+    function toggleUserProfileSidebar(){
+        const sidebar = document.querySelector('.user-profile-sidebar')
+        const ul = document.querySelector('.user-profile-sidebar-options')
+
+        if(!sidebar.classList.contains('active-user-profile-sidebar')){
+            sidebar.classList.add('active-user-profile-sidebar')
+            ul.classList.add('active-user-profile-sidebar-options')
+        }else{
+            sidebar.classList.remove('active-user-profile-sidebar')
+            ul.classList.remove('active-user-profile-sidebar-options')
+        }
+    }
+
   return (
     <>
     <Navbar/>
     <div className='user-profile-wrapper'>
         <div className="loader-wrapper"><span className="loader"></span></div>
         <div className="user-profile-sidebar">
-
+            <div className="user-profile-hamburger-btn" onClick={toggleUserProfileSidebar}>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
             <ul className="user-profile-sidebar-options">
                 <li><button className='user-sidebar-btns user-active-option' onClick={e => switchProfileOption(options.profile, e.target)}>Profile</button></li>    
                 <li><button className='user-sidebar-btns' onClick={e => switchProfileOption(options.savedProperties, e.target)}>Saved Properties</button></li>
