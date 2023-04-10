@@ -278,16 +278,93 @@ body{
     .active-user-profile-sidebar{
         width: 90vw;
     }
-    .profile-info-wrapper{
+    .profile-info-wrapper, .saved-property-wrapper, .made-reservation-wrapper, .listed-property{
         width: 80%;
     }
     .profile-info-wrapper input{
         font-size: 1.5em;
     }
-    .saved-property-wrapper{
-        width: 80%;
-    }
     .reset-password-btn{
         bottom: 25px;
     }
+}
+/* iPhone 12/13 Pro Max */
+@media (max-width:428px) and (max-height: 926px){
+    .profile-div, .saved-properties-div, .made-reservations-div , .listed-properties-wrapper{
+        height: 100vh;
+        width: 88vw;
+        margin-top: 8vh;
+        margin-left: 12vw;
+    }
+    .profile-info-wrapper{
+        width: 90%;
+    }
+    .profile-info-wrapper input{
+        width: 80%;
+        font-size: 1em;
+    }
+    .reset-password-btn{
+        right:23px;
+    }
+    .mobile-user-profile-sidebar{
+        width: 12vw;
+        margin-top: 8vh;
+    }
+    .active-user-profile-sidebar{
+        width: 100vw;
+    }
+    .saved-property-wrapper, .made-reservation-wrapper, .listed-property{
+        width: 90%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .saved-property-img-wrapper, .made-reservation-img-wrapper, .listed-property-img-wrapper{
+        margin-bottom: 10px;
+    }
+}
+/* iPhone X/XS */
+@media (max-width:375px) and (max-height:812px){
+    .mobile-user-profile-sidebar{
+        width: 13vw;
+    }
+    .active-user-profile-sidebar{
+        width: 100vw;
+    }
+    .user-profile-sidebar-options{
+        height: 50%;
+    }
+    .saved-property-wrapper, .made-reservation-wrapper, .listed-property{
+        padding:10px 8px;
+    }
+    .properties-more-options-btn{
+        right: 5px;
+    }
+}
+/* S21FE */
+@media (max-width:360px) and (max-height:800px){
+    .mobile-user-profile-sidebar{
+        width: 14vw;
+    }
+    .active-user-profile-sidebar{
+        width: 100vw;
+    }
+    .profile-div, .saved-properties-div, .made-reservations-div , .listed-properties-wrapper{
+        height: 92.5vh;
+    }
+    .saved-property-wrapper, .made-reservation-wrapper, .listed-property{
+        padding:10px 8px;
+        margin-left: 1vh;
+    }
+    .made-reservation-wrapper{
+        height: 40%;
+        justify-content: center;
+    }
+    .properties-more-options-btn{
+        font-size: 2em;
+    }
+    .unlist-property-btn{
+        top: 50px;
+    }
+
 }

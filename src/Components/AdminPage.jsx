@@ -15,6 +15,10 @@ export default function AdminPage() {
     useEffect(()=>{
         if(auth.currentUser === null || auth.currentUser.uid !== 'uf5IaiAiv1Y4OlIruvX1Er2I0Sd2') navigate('/')
         fetchUsers()
+        if(window.screen.width <= 834){
+            const sidebar = document.querySelector('.admin-sidebar')
+            sidebar.classList.add('mobile-admin-sidebar')
+        }
         return () => fetchUsers()
     }, [])
 
@@ -32,12 +36,15 @@ export default function AdminPage() {
     const [resorts, setResorts] = useState([])
 
     async function switchAdminOption(targetBtn, newOption){
+        const sidebar = document.querySelector('.admin-sidebar')
+
         const sidebarButtons = document.querySelectorAll('.sidebar-btns')
         for(let i = 0; i < sidebarButtons.length; i++){
             sidebarButtons[i].classList.remove('active-btn')
         }
         targetBtn.classList.add('active-btn')
 
+        if(sidebar.classList.contains('active-mobile-admin-sidebar')) toggleAdminSidebar()
         if(newOption === adminOptions.hotels) fetchProps('hotels')
         else if(newOption === adminOptions.apartments) fetchProps('apartments')
         else if(newOption === adminOptions.resorts) fetchProps('resorts')
@@ -179,11 +186,31 @@ export default function AdminPage() {
             window.location.reload()
         })
     }
+
+    function toggleAdminSidebar(){
+        const sidebar = document.querySelector('.mobile-admin-sidebar')
+        const ul = document.querySelector('.admin-sidebar ul')
+
+        if(!sidebar.classList.contains('active-mobile-admin-sidebar')){
+            sidebar.classList.add('active-mobile-admin-sidebar')
+            ul.style.display = "flex"
+        }
+        else{
+            sidebar.classList.remove('active-mobile-admin-sidebar')
+            ul.style.display = "none"
+        } 
+    }
   return (
     <>
-     <Navbar/>
+    <Navbar/>
     <div className='admin-page-wrapper'>
+
         <div className="admin-sidebar">
+        <div className="admin-hamburger-btn" onClick={toggleAdminSidebar}>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
             <ul>
                 <li><button className="sidebar-btns active-btn" onClick={e => switchAdminOption(e.target, adminOptions.users)}>View Users</button></li>
                 <li><button className="sidebar-btns" onClick={e => switchAdminOption(e.target, adminOptions.hotels)}>View Hotels</button></li>
@@ -231,8 +258,8 @@ export default function AdminPage() {
                             <button onClick={() => deleteProperty('hotels', hotel.docId)}>Delete Property</button>
                             <button onClick={() => editProperty('show', hotel)}>Edit Property</button>
                         </div>
-                        <div className="listed-property-img-wrapper">
-                            <img src={hotel.propertyDetails.pictures[0]}/>
+                        <div className="listed-property-img-wrapper admin-listed-property-img-wrapper">
+                            <Link to="/propertyDetails" state={{property:hotel}}><img src={hotel.propertyDetails.pictures[0]}/></Link>
                         </div>
                         <div className="listed-property-details">
                             <Link to="/propertyDetails" className="myProperties-links"  style={{marginBottom:'20px'}} state={{property:hotel}}>{hotel.propertyDetails.propertyName}</Link>
@@ -260,8 +287,8 @@ export default function AdminPage() {
                             <button onClick={() => deleteProperty('apartments', apartment.docId)}>Delete Property</button>
                             <button onClick={() => editProperty('show', apartment)}>Edit Property</button>
                         </div>
-                        <div className="listed-property-img-wrapper">
-                            <img src={apartment.propertyDetails.pictures[0]} />
+                        <div className="listed-property-img-wrapper admin-listed-property-img-wrapper">
+                            <Link to="/propertyDetails" state={{property:apartment}}><img src={apartment.propertyDetails.pictures[0]} /></Link>
                         </div>
                         <div className="listed-property-details">
                             <Link to="/propertyDetails" className='myProperties-links' state={{property:apartment}}>{apartment.propertyDetails.propertyName}</Link>
@@ -291,8 +318,8 @@ export default function AdminPage() {
                             <button onClick={() => deleteProperty('resorts', resort.docId)}>Delete Property</button>
                             <button onClick={() => editProperty('show', resort)}>Edit Property</button>
                         </div>
-                        <div className="listed-property-img-wrapper">
-                            <img src={resort.propertyDetails.pictures[0]} />
+                        <div className="listed-property-img-wrapper admin-listed-property-img-wrapper">
+                            <Link to="/propertyDetails" state={{property:resort}}><img src={resort.propertyDetails.pictures[0]}/></Link>
                         </div>
                         <div className="listed-property-details">
                             <Link to="/propertyDetails" className='myProperties-links' state={{property:resort}}>{resort.propertyDetails.propertyName}</Link>

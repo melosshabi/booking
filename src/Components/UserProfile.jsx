@@ -21,7 +21,6 @@ export default function UserProfile() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        console.log(window.screen.width)
         if(window.screen.width <= 1024){
             document.querySelector('.user-profile-sidebar').classList.add('mobile-user-profile-sidebar')
         }
@@ -129,8 +128,12 @@ export default function UserProfile() {
         for(let i = 0; i < savedPropertiesIDs.length; i++){ 
             const propertyRef = doc(db, `${savedPropertiesIDs[i].propertyType}s`, savedPropertiesIDs[i].propertyDocId)
             const docSnap = await getDoc(propertyRef)
+
+            if(docSnap._document !== null){
+                
             let tempObj = ({...docSnap.data(), docId:docSnap.id})
             tempArr.push(tempObj)
+            }
         }
         setSavedPropertiesData(tempArr)
     }
@@ -222,7 +225,6 @@ export default function UserProfile() {
             ul.classList.remove('active-user-profile-sidebar-options')
         }
     }
-
   return (
     <>
     <Navbar/>
@@ -234,6 +236,7 @@ export default function UserProfile() {
                 <div></div>
                 <div></div>
             </div>
+            
             <ul className="user-profile-sidebar-options">
                 <li><button className='user-sidebar-btns user-active-option' onClick={e => switchProfileOption(options.profile, e.target)}>Profile</button></li>    
                 <li><button className='user-sidebar-btns' onClick={e => switchProfileOption(options.savedProperties, e.target)}>Saved Properties</button></li>

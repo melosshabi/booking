@@ -238,7 +238,7 @@ nav{
   }
   .mobile-more-options-btn{
     position: relative;
-    font-size: 1.5em;
+    font-size: 1.2em;
     color:white;
   }
   .mobile-caret{
@@ -262,16 +262,17 @@ nav{
     transition: all 400ms;
   }
   .active-mobile-options{
-    height: 80px;
+    height: 70px;
     border:1px solid black;
   }
   .mobile-more-options ul{
     list-style: none;
   }
   .mobile-more-options li{
-    border-top:1px solid black;
-    border-bottom: 1px solid black;
     padding:5px 5px;
+  }
+  .mobile-more-options li:first-child{
+    border-bottom:1px solid black;
   }
   .mobile-more-options a{
     text-decoration: none;

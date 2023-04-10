@@ -13,6 +13,9 @@
     flex-direction: column;
     justify-content: center;
 }
+.admin-hamburger-btn{
+    display: none;
+}
 .admin-sidebar ul{
     min-height: 60%;
     display: flex;
@@ -223,4 +226,155 @@
 }
 .close-edit-form img{
     width: 35px;
+}
+/* iPad Pro 12 inch */
+@media (max-width:1024px) and (max-height:1366px){
+    .admin-sidebar{
+        width: 40vw;
+    }
+    .admin-sidebar ul{
+        min-height: 30%;
+    }
+    .users{
+        width: 95%;
+    }
+    .hotels-wrapper, .apartments-wrapper, .resorts-wrapper{
+        width: 100%;
+    }
+    .admin-listed-property{
+        width: 95%;
+        height: fit-content;
+    }
+    .admin-listed-property-img-wrapper{
+        height: fit-content;
+    }
+}
+/* iPad Pro 11 inch */
+@media (max-width:834px) and (max-height:1194px){
+    .mobile-admin-sidebar{
+        width: 7vw;
+        height: 100vh;
+        position: absolute;
+        z-index: 1;
+        transition: all 400ms;
+    }
+    .active-mobile-admin-sidebar{
+        width: 80vw;
+    }
+    .admin-sidebar ul{
+        display: none;
+    }
+    .admin-hamburger-btn{
+        height: 25px;
+        width: 35px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        position: absolute;
+        top:10px;
+        right:10px;
+    }
+    .admin-hamburger-btn div{
+        height: 4px;
+        width: 100%;
+        background-color: white;
+    }
+    .admin-page-details-div{
+        width: 93vw;
+        margin-left: 7vw;
+    }
+    .users{
+        width: 90vw;
+    }
+}
+/* iPhone 12/13 Pro Max */
+@media (max-width:428px) and (max-height:926px){
+    .admin-page-details-div{
+        margin-top: 8vh;
+    }
+    .mobile-admin-sidebar{
+        width: 10vw;
+        margin-top: 7.9vh;
+    }
+    .active-mobile-admin-sidebar{
+        width: 100vw;
+    }
+    .admin-hamburger-btn{
+        right:5px;
+    }
+    .admin-sidebar ul{
+        height: 40%;
+    }
+    .users{
+        border:none;
+        border-top:1px solid gray;
+    }
+    .user{
+        margin-left: 5px;
+    }
+    .hotels-wrapper{
+        border:none;
+        border-top:1px solid gray;
+    }
+    .admin-listed-property{
+        padding: 0;
+        margin-left: 10px;
+    }
+    .properties-more-admin-options{
+        right:0;
+        height: fit-content;
+        margin-top:50px;
+    }
+    .properties-more-admin-options button{
+        height: 35px;
+    }
+    .properties-more-admin-options button:first-of-type{
+        border-bottom: 1px solid black;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .properties-more-admin-options button:last-of-type{
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+    }
+}
+/* iPhone XS Max */
+@media (max-width:414px) and (max-height:896px){
+    .admin-hamburger-btn{
+        right: 3px;
+    }
+}
+/* iPhone X/XS */
+@media (max-width:375px) and (max-height:812px){
+    .mobile-admin-sidebar{
+        width: 11vw;
+    }
+    .active-mobile-admin-sidebar{
+        width: 100vw;
+    }
+    .user{
+        width: 90%;
+        margin-left: 8px;
+    }
+    .user h2{
+        margin-top: 10%;
+    }
+    .admin-listed-property{
+        width: 93%;
+    }
+    .admin-listed-property-img-wrapper{
+        margin-top: 15%;
+    }
+}
+/* iPhone SE */
+@media (max-width:375px) and (max-height:667px){
+    .admin-sidebar ul{
+        height: 50%;
+    }
+}
+/* S21FE */
+@media (max-width:360px) and (max-height:800px){
+    .admin-sidebar ul{
+        height: 50%;
+    }
 }

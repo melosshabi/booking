@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import {auth} from '../firebase-config'
 import { signOut } from 'firebase/auth'
@@ -43,7 +43,7 @@ export default function Navbar() {
     const sidebar = document.querySelector('.sidebar')
     if(!sidebar.classList.contains('active-sidebar')){
       sidebar.classList.add('active-sidebar')
-      document.documentElement.style.overflow = "hidden"
+      document.documentElement.style.overflowY = "hidden"
     }else{
       sidebar.classList.remove('active-sidebar')
       document.documentElement.style.overflowY = 'scroll';
@@ -97,7 +97,7 @@ export default function Navbar() {
               <div className='mobile-more-options'> 
                   <ul>
                     <li><Link to="/userProfile">My Profile</Link></li>
-                    {auth.onAuthStateChanged(() => auth.currentUser === 'uf5IaiAiv1Y4OlIruvX1Er2I0Sd2' ? true : false)  && <li><Link to="/adminPage">Admin Page</Link></li>}
+                    {auth.onAuthStateChanged(() => auth.currentUser === 'uf5IaiAiv1Y4OlIruvX1Er2I0Sd2' ? true : false)  && <li><Link to="/adminPage" onClick={toggleSidebar}>Admin Page</Link></li>}
                   </ul>
             </div>
             </div>}
