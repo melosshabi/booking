@@ -141,7 +141,7 @@ export default function AdminPage() {
         })
     }
 
-    // Variablat per pronen qe ka mu editu
+    // Variables for the property that is going to be edited
     const [objectOfPropertyToBeUpdated, setObjectOfPropertyToBeUpdated] = useState({})
     const [newName, setNewName] = useState('')
     const [newCountry, setNewCountry] = useState('')
